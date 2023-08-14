@@ -15,7 +15,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="title" content="Chetan Tyagi">
-<meta property="og:title" content="Yash Mouje">
+<meta property="og:title" content="Chetan Tyagi">
 <meta name="url" content="https://chetantyagi.me">
 <meta property="og:url" content="https://chetantyagi.me">
 <meta name="description" content="Map Master">
@@ -25,144 +25,162 @@
     <meta charset="utf-8">
     <title>Map Master</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <style>
-      /* Common styles for both PC and mobile */
-      body {
-        background: url("b1.jpg");
-        font-family: "Rockwell", serif;
-      }
-      #map {
-        position: fixed;
-        top: 56%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        height: 350px;
-        width: 98%;
-        background: url('a2.jpg');
-        background-repeat: repeat;
-        border: 10px solid transparent;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        margin: 0 auto;
-        z-index: 1;
-        font-family: "Rockwell", serif;
+    
+<style>
+  /* Common styles for both PC and mobile */
+  body {
+    background: url("b1.jpg");
+    font-family: "Rockwell", serif;
+  }
+  
+  #map {
+    position: fixed;
+    top: 56%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 350px;
+    width: 98%;
+    background: url('a2.jpg');
+    background-repeat: repeat;
+    border: 10px solid transparent;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin: 0 auto;
+    z-index: 1;
+    font-family: "Rockwell", serif;
+  }
+  
+  .text-center2 {
+    position: fixed;
+    top: 15%;
+    text-align: center;
 
-      }
-      .text-center2 {
-        position: fixed;
-        left: 32%;
-        top: 15%;
-        text-align: center;
-        font-size: 19px;
-        font-family: "Rockwell", serif;
 
-      }
-      .text-center {
-        position: fixed;
-        top: 88%;
-        left: 15%;
-        text-align: center;
-        font-size: 19px;
-        font-family: "Rockwell", serif;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
 
-      }
-      .text-center3 {
-        position: fixed;
-        top: 92%;
-        left: 65%;
-        text-align: center;
-        font-size: 19px;
-        font-family: "Rockwell", serif;
+    font-size: 19px;
+    font-family: "Rockwell", serif;
+  }
+  
+  .text-center {
+    position: fixed;
+    top: 88%;
+    left: 15%;
+    text-align: center;
+    font-size: 19px;
+    font-family: "Rockwell", serif;
+  }
+  
+  .text-center3 {
+    position: fixed;
+    top: 92%;
+    left: 65%;
+    text-align: center;
+    font-size: 19px;
+    font-family: "Rockwell", serif;
+  }
+  
+  .button {
+    position: fixed;
 
-      }
-      .button {
-        display: inline-block;
-        padding: 12px;
-        font-size: 19px;
-        color: rgb(236, 236, 236);
-        background-color: rgb(142, 97, 0);
-        text-align: center;
-        text-decoration: none;
-        cursor: pointer;
-        margin: 10px;
-        width: 550px;
-        height: 50px;
-        background: url('a2.jpg');
-        font-family: "Rockwell", serif;
+    display: inline-block;
+    padding: 12px;
+    font-size: 19px;
+    color: rgb(236, 236, 236);
+    background-color: rgb(142, 97, 0);
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 10px;
+    width: 550px;
+    height: 50px;
+    background: url('a2.jpg');
+    font-family: "Rockwell", serif;
+  }
+  
+  h1 {
+    position: fixed;
 
-      }
-      h1 {
-        font-size: 24px;
-        text-align: center;
-        margin-top: 5px;
-        margin-bottom: 7px;
-        font-family: "Rockwell", serif;
+    font-size: 24px;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 7px;
+    font-family: "Rockwell", serif;
+  }
+  
+  #loading {
+    position: fixed;
 
-      }
-      #loading {
-        display: none;
-        position: fixed;
-        top: 5%;
-        left: 10%;
-        transform: translate(-50%, -50%);
-        z-index: 9999;
-        text-align: center;
-        font-size: 18px;
-        font-family: "Rockwell", serif;
+    display: none;
+    position: fixed;
+    top: 5%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    text-align: center;
+    font-size: 18px;
+    font-family: "Rockwell", serif;
+  }
+  
+  .leaflet-control-attribution {
+    display: none !important;
+  }
+  
+  #result {
+    position: fixed;
+    top: 8%;
+    font-size: 18px;
+    font-family: "Rockwell", serif;
+  }
+  
+  #loading::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: calc(50% - 15px);
+    left: calc(50% + 110px);
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    margin-left: 8px;
+    border-radius: 50%;
+    border: 4px solid #ccc;
+    border-color: #a15d0a transparent #a15d0a transparent;
+    animation: loading 1.2s linear infinite;
+    font-family: "Rockwell", serif;
+  }
+  
+  #loading span {
+    display: inline-block;
+    margin-right: 8px;
+  }
+  
+  @keyframes loading {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  #new-game-button {
+    position: fixed;
 
-      }
-      .leaflet-control-attribution {
-        display: none !important;
-      }
-      #result {
-        position: fixed;
-        top: 8%;
-        font-size: 18px;
-        font-family: "Rockwell", serif;
-
-      }
-
-      #loading::after {
-        content: '';
-        display: block;
-        position: absolute;
-        top: calc(50% - 15px);
-        left: calc(50% + 110px);
-        transform: translate(-50%, -50%);
-        width: 20px;
-        height: 20px;
-        margin-left: 8px;
-        border-radius: 50%;
-        border: 4px solid #ccc;
-        border-color: #a15d0a transparent #a15d0a transparent;
-        animation: loading 1.2s linear infinite;
-        font-family: "Rockwell", serif;
-
-      }
-      #loading span {
-        display: inline-block;
-        margin-right: 8px;
-      }
-      @keyframes loading {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-      #new-game-button {
-        color: rgb(255, 255, 255);
-        font-size: 12px;
-        text-align: center;
-        width: 160px;
-        height: 30px;
-        background: url("a2.jpg");
-        position: absolute;
-        top: 90px;
-        font-family: "Rockwell", serif;
-
-        right: 20px;
-      }
+    color: rgb(255, 255, 255);
+    font-size: 12px;
+    text-align: center;
+    width: 160px;
+    height: 30px;
+    background: url("a2.jpg");
+    top: 90px;
+    font-family: "Rockwell", serif;
+    right: 20px;
+  }
+  
       #timer {
         color: rgb(255, 255, 255);
         font-size: px;
@@ -178,12 +196,42 @@
 
         background: url("a2.jpg");
       }
-      .logo{position: fixed; top: -65px; right: 500px; width: 180px;
-        height: 180px;}
-      .logolink{width: 190px; height: 180px; cursor: pointer;}
+      .logo {
+  position: fixed;
+  top: -65px;
+  width: 180px;
+  height: 180px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+}
+.logolink {
+  width: 190px;
+  height: 180px;
+  cursor: pointer;
+}
       
       /* Styles for mobile phones */
-      @media only screen and (min-width: 300px) and (max-width: 1000px) {
+      @media only screen and (min-width: 300px) and (max-width: 980px) {
+
+        .logo {
+  position: fixed;
+  top: -65px;
+  width: 220px;
+  height: 210px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+}
+.logolink {
+  width: 230px;
+  height: 220px;
+  cursor: pointer;
+}
         .text-center {
           font-size: 60px; /* Increased font size */
           text-align: center;
@@ -193,7 +241,7 @@
         .text-center2 {
           font-size: 35px; /* Increased font size */
           text-align: center;
-        left: 5%;
+            
         }
         .text-center3 {
           display: none
@@ -290,36 +338,67 @@
         background: url('a2.jpg');
 
       }
-      .logo{position: fixed; top: -90px; right: 350px; width: 300px;
-        height: 300px;}
-      .logolink{width: 190px; height: 180px; cursor: pointer;}
+      #fullscreen-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 1000;
+    }
+        #back-button {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 1000;
+    }
       }
-
+      #fullscreen-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 1000;
+    }
+    #back-button {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 1000;
+    }
+    @media (min-width: 768px) and (max-width: 1024px) {
+  /* Adjust element positioning and dimensions */
+}
     </style>
 </head>
 <body>
-  <a href="https://chetanty.github.io/mapmaster/" target="_blank" class="logo-link">
-    <img src="mm1.png" alt="Go to https://chetanty.github.io/mapmaster/" class="logo" />
+  <a href="https://chetantyagi.me/" target="_blank" class="logo-link">
+    <img src="mm1.png" alt="Go to https://chetantyagi.me/" class="logo" />
   </a>
   <div id="loading">Loading the coordinates...</div>
   <p id="timer">Time Elapsed:<br> 0 seconds</p>
   <div id="result"></div>
-  <div class="text-center2">Select a point on land and click on Guess to Begin</div>
+  <div class="text-center2">Select a point on land and click on Guess City Button to Begin</div>
   <div id="map"></div>
   <div class="text-center3">
     <input type="checkbox" id="show-coordinates">
     <label for="show-coordinates">Show Coordinates</label>
   </div>
   <div class="text-center">
-
     <button id="guess-button" class="button">Guess City</button>
   </div>
   <button id="new-game-button" onclick="startNewGame()">New Game</button>
-  <div id="result"></div>
-
-
 
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.fullscreen/1.4.2/Control.FullScreen.min.js"></script>
   <script src="app.js"></script>
+  <script>
+    function toggleFullScreen() {
+      const mapElement = document.getElementById("map");
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      } else {
+        mapElement.requestFullscreen();
+      }
+    }
+  </script>
+  
 </body>
 </html>
