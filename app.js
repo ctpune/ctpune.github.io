@@ -1,6 +1,7 @@
 // Chetan Tyagi
 // 2 August 2023
 
+let highScores = JSON.parse(localStorage.getItem('highScores')) || [];
 
 
 // Initialize the map
@@ -20,6 +21,9 @@ L.control.fullscreen({
 }).addTo(map);
 
 // Initialize game variables
+// Initialize high scores from localStorage or an empty array
+
+let playerScore = 0;
 let marker = null;
 let circle = null;
 let initialCity = '';
@@ -75,6 +79,17 @@ function stopTimer() {
   timerInterval = null;
   
 }
+function updateHighScoreList() {
+  const highScoreList = document.getElementById('high-score-list');
+  highScoreList.innerHTML = '';
+
+  highScores.forEach((score, index) => {
+    const listItem = document.createElement('li');
+    listItem.textContent = `${score.name}: ${score.score} points (${score.date})`;
+    highScoreList.appendChild(listItem);
+  });
+}
+
 // Handle guess button click event
 const guessButton = document.getElementById('guess-button');
 const showCoordinatesCheckbox = document.getElementById('show-coordinates');
@@ -108,12 +123,16 @@ guessButton.addEventListener('click', async function () {
     
     if (guessDistance < 50000) {
       endTime = Date.now();
-      const timeTaken = (endTime - startTime) / 1000; // Calculate time taken in seconds
+      const timeTaken = (endTime - startTime) / 1000;
+      playerScore += 10; // Calculate time taken in seconds
       resultText.push(`<strong>You win! Distance from answer:</strong> ${guessDistance / 1000} kilometers. <strong>Your Guess:</strong> ${guessCity}, ${guessCountry}. <strong>Time Taken:</strong> ${timeTaken} seconds`);
+
       stopTimer();
 
       resultText.push(`Reload the page to start a new round.`);
-    } else {
+      const playerScoreElement = document.getElementById('player-score');
+      playerScoreElement.textContent = playerScore;
+    }else {
       resultText.push(`<strong>Distance from answer:</strong> ${guessDistance / 1000} kilometers. <strong>Your Guess:</strong> ${guessCity}, ${guessCountry}.`);
       if (initialLat.toFixed(4) !== 0.0000 && initialCity !== "" && initialCity !== "Unknown") {
         resultText.push(`<strong>To find:</strong> ${initialCity}, ${initialCountry}.`);
@@ -191,11 +210,59 @@ async function getRandomLandCoordinates() {
   }
   return [lat, lng];
 }
+// Define a variable to track the visibility state of the high score table
+let highScoresVisible = false;
 
+// Function to toggle the visibility of the high score table
+function toggleHighScores() {
+  const highScoreTable = document.getElementById("score-table");
+  const toggleButton = document.getElementById("toggle-high-scores");
+
+  if (highScoresVisible) {
+    highScoreTable.style.display = "none";
+    toggleButton.textContent = "Show High Scores";
+  } else {
+    highScoreTable.style.display = "block";
+    toggleButton.textContent = "Hide High Scores";
+  }
+
+  // Toggle the visibility state
+  highScoresVisible = !highScoresVisible;
+}
+
+function updateHighScoreList() {
+  const highScoreList = document.getElementById('high-score-list');
+  highScoreList.innerHTML = '';
+
+  highScores.slice(0, 10).forEach((score, index) => {
+    const listItem = document.createElement('li');
+    listItem.textContent = `${score.name}: ${score.score} points (${score.date})`;
+    highScoreList.appendChild(listItem);
+  });
+}
 
 // Initialize the game when the window finishes loading
 window.addEventListener('load', async function() {
   await initializeGame();
+});
+const saveScoreButton = document.getElementById('save-score');
+saveScoreButton.addEventListener('click', () => {
+  const userNameInput = document.getElementById('user-name');
+  const userName = userNameInput.value;
+  if (userName && userName.trim() !== '') {
+    const userScore = playerScore; 
+    
+    const currentDate = new Date().toLocaleDateString();
+    const newHighScore = { name: userName, score: userScore, date: currentDate };
+    highScores.push(newHighScore);
+    highScores.sort((a, b) => b.score - a.score);
+    localStorage.setItem('highScores', JSON.stringify(highScores));
+    updateHighScoreList();
+    userNameInput.value = '';
+  }
+});
+window.addEventListener('load', () => {
+  updateHighScoreList();
 });
 
 
@@ -228,7 +295,14 @@ function startNewGame() {
   initialLng = 0;
 
 
-
+  window.addEventListener('load', () => {
+    updateHighScoreList();
+  });
+  
+  // Start New Game Function
+  function startNewGame() {
+    // ... (Your existing code)
+  }
   // Reset result text
   const resultDiv = document.getElementById('result');
   resultDiv.textContent = '';
