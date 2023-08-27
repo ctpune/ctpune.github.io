@@ -51,19 +51,6 @@ async function initializeGame() {
     console.error('Error retrieving city, country, and capital for initial coordinates:', error);
   }
 }
-function sanitizeInput(input) {
-  // Replace '<' with '&lt;' and '&' with '&amp;'
-  return input.replace(/</g, '&lt;').replace(/&/g, '&amp;');
-}
-
-// Get the user input
-const userInput = document.getElementById('user-name').value;
-
-// Sanitize the user input
-const sanitizedInput = sanitizeInput(userInput);
-
-// Set the sanitized input back to the input element
-document.getElementById('user-name').value = sanitizedInput;
 
 function startTimer() {
   let seconds = 0;
@@ -216,7 +203,10 @@ guessButton.addEventListener('click', async function () {
     ; 
   }
 });
-
+function sanitizeInput(input) {
+  // Replace '<' with '&lt;' and '&' with '&amp;'
+  return input.replace(/</g, '&lt;').replace(/&/g, '&amp;');
+}
 // Generate random coordinates on land
 async function getRandomLandCoordinates() {
   const cities =   ['Cordoba', 'Accra', 'Algiers', 'Maputo', 'Antananarivo', 'Phnom Penh', 'Santo Domingo', 'Dhaka', 'Port-au-Prince', 'Santiago de Cuba', 'Kingston', 'Vilnius', 'Skopje', 'San Juan', 'La Paz', 'Port of Spain', 'Anchorage', 'Suva', 'Noumea', 'Hobart', 'Darwin', 'Canberra', 'Georgetown', 'Paramaribo', 'Oranjestad', 'Kingstown', 'Roseau', 'Basseterre', 'Bridgetown', 'Castries', 'St. George\'s', 'Belmopan', 'Port of Spain', 'Asuncion', 'Montevideo', 'Paramaribo', 'Cayenne', 'Nouakchott', 'Bamako', 'Niamey', 'Conakry', 'Monrovia', 'Freetown', 'Banjul', 'Bissau', 'Praia', 'Djibouti', 'Asmara', 'Addis Ababa', 'Mogadishu', 'Hargeisa', 'Juba', 'Khartoum', 'N\'Djamena', 'Bangui', 'Brazzaville', 'Kinshasa', 'Libreville', 'Malabo', 'Yaounde', 'Nouakchott', 'Rabat', 'Algiers', 'Tunis', 'Tripoli', 'Cairo', 'Kampala', 'Lilongwe', 'Harare', 'Gaborone', 'Maseru', 'Mbabane', 'Antananarivo', 'Port Louis', 'Mamoudzou', 'Saint-Denis', 'Porto-Novo', 'Lome', 'Ouagadougou', 'Niamey', 'N\'Djamena', 'Bangui', 'Bujumbura', 'Kigali', 'Luanda', 'Lusaka', 'Windhoek', 'Gaborone', 'Pretoria', 'Maseru', 'Lobamba', 'Mbabane', 'Maputo', 'Antananarivo', 'Moroni', 'Victoria', 'Male', 'Colombo', 'Kathmandu', 'Thimphu', 'Dhaka', 'Naypyidaw', 'Vientiane', 'Phnom Penh', 'Hanoi', 'Ulaanbaatar', 'Pyongyang', 'Seoul', 'Tokyo', 'Beijing', 'Taipei', 'Port Moresby', 'Honiara', 'Port Vila', 'Suva', 'Nukuʻalofa', 'Apia', 'Funafuti', 'Tarawa', 'Majuro', 'Palikir', 'Saipan', 'Hagatna', 'Koror', 'Melekeok', 'Ngerulmud', 'Yaren', 'Kingston', 'St. John\'s', 'Roseau', 'Basseterre', 'Castries', 'Kingstown', 'Bridgetown', 'Port of Spain', 'Georgetown', 'Paramaribo', 'Cayenne', 'Nouakchott', 'Bamako', 'Niamey', 'Accra', 'Conakry', 'Freetown', 'Monrovia', 'Banjul', 'Bissau', 'Praia', 'Dakar', 'Nouakchott', 'Rabat', 'Algiers', 'Tunis', 'Tripoli', 'Cairo', 'Khartoum', 'Djibouti', 'Asmara', 'Addis Ababa', 'Mogadishu', 'Nairobi', 'Kampala', 'Kigali', 'Bujumbura', 'Dodoma', 'Lilongwe', 'Lusaka', 'Harare', 'Gaborone', 'Pretoria', 'Maseru', 'Mbabane', 'Maputo', 'Antananarivo', 'Moroni', 'Victoria', 'Male', 'Colombo', 'Kathmandu', 'Thimphu', 'Dhaka', 'Naypyidaw', 'Vientiane', 'Phnom Penh', 'Hanoi', 'Ulaanbaatar', 'Pyongyang', 'Seoul', 'Tokyo', 'Beijing', 'Taipei', 'Port Moresby', 'Honiara', 'Port Vila', 'Suva', 'Nukuʻalofa', 'Apia', 'FunafutiSure','Dakar', 'Oslo', 'São Paulo', 'Novosibirsk', 'Madrid', 'Copenhagen', 'Port Louis', 'Panama City', 'Nashville', 'Riga', 'Hanoi', 'Geneva', 'Manhattan', 'Frankfurt', 'Sapporo', 'Osaka', 'Berlin', 'Singapore', 'Ankara', 'Tallinn', 'Lyon', 'Las Vegas', 'Ottawa', 'Melbourne', 'Chicago', 'Tunis', 'Bucharest', 'Auckland', 'Jakarta', 'Nassau', 'Nagoya', 'Kiev', 'Perth', 'Abu Dhabi', 'Johannesburg', 'Los Angeles', 'Hamburg', 'Venice', 'Manchester', 'Alexandria', 'Istanbul', 'Luxembourg City', 'Ulaanbaatar', 'Valencia', 'Brussels', 'Dubai', 'Manama', 'London', 'Giza', 'Budapest', 'Guangzhou', 'Helsinki', 'Zurich', 'Prague', 'Izmir', 'Bangkok', 'Edinburgh', 'Abuja', 'Tehran', 'Beijing', 'Zagreb', 'Toronto', 'Cape Town', 'Guatemala City', 'Saint Petersburg', 'Manila', 'Kyoto', 'Athens', 'Sydney', 'Buenos Aires', 'Nicosia', 'Montreal', 'Brasilia', 'Islamabad', 'Kolkata', 'Utrecht', 'Amman', 'Rio de Janeiro', 'Amsterdam', 'Xiamen', 'Dublin', 'Shanghai', 'Kuala Lumpur', 'Sao Paulo', 'Washington, D.C.', 'Fiji', 'Ouagadougou', 'Warsaw', 'Esfahan', 'Seoul', 'Kyiv', 'Paris', 'Delhi', 'Oxford', 'Adelaide', 'Wellington', 'Cairo', 'San Salvador', 'Marseille', 'Lisbon', 'Tbilisi', 'Yokohama', 'Tokyo', 'Hong Kong', 'Sharjah', 'New York', 'Vancouver', 'Bangalore', 'Quebec City','Minsk', 'Quito', 'Havana', 'Birmingham', 'Durban', 'Mexico City', 'Taipei', 'Naples', 'Vienna', 'Reykjavik', 'Glasgow', 'Calgary', 'Incheon', 'Stockholm', 'Doha', 'Jerusalem', 'Lima', 'Munich', 'Yaounde', 'Nairobi', 'Florence', 'Moscow', 'Rome', 'Vatican City', 'Brisbane', 'Monte Carlo', 'Milan', 'Pisa', 'Yerevan', 'Caracas', 'Barcelona', 'Xian', 'Riyadh', 'Santiago', 'Windhoek','Casablanca','Chittagong', 'Bogota', 'Kabul','Karachi', 'Lagos', 'Kinshasa', 'Mumbai', 'Bengaluru', 'Tianjin', 'Chongqing', 'Bogotá', 'Lima', 'Chennai', 'Chengdu', 'Lahore', 'Baghdad', 'Bangalore', 'Surat', 'Hyderabad', 'Ho Chi Minh City', 'Luanda', 'Khartoum', 'Yangon', 'Kanpur', 'Addis Ababa', 'Nairobi', 'Dar es Salaam', 'Salvador', 'Harbin', 'Medellín', 'Jaipur', 'Aleppo', 'Guayaquil', 'Hangzhou', 'Shenyang', 'Suzhou', 'Faisalabad', 'Rawalpindi', 'Lucknow', 'Busan', 'Patna', 'Jeddah', 'Kampala', 'Ibadan', 'Dalian', 'Pune', 'Wuhan', 'Nagpur', 'Indore', 'Qingdao', 'Surat Thani', 'Madurai', 'Tangshan', 'Ningbo', 'Taichung', 'Xuzhou', 'Douala', 'Rajkot', 'Mecca', 'Shenzhen', 'Nanjing', 'Kochi', 'Changsha', 'Guadalajara', 'Monterrey', 'Bhopal', 'Tashkent', 'Lanzhou', 'Thane', 'Baotou']
@@ -265,14 +255,19 @@ window.addEventListener('load', async function() {
 
 });
 // Handle the submit score button click
+// Handle the submit score button click
+// Handle the submit score button click
 const saveScoreButton = document.getElementById('save-score');
 saveScoreButton.addEventListener('click', async () => {
   const userNameInput = document.getElementById('user-name');
   const userName = userNameInput.value;
-  if (userName && userName.trim() !== '') {
+  const sanitizedUserName = sanitizeInput(userName); // Sanitize the user's name
+
+  // Check if the user name exceeds 15 characters
+  if (sanitizedUserName && sanitizedUserName.trim() !== '' && sanitizedUserName.length <= 15) {
     const userScore = playerScore;
     const currentDate = new Date().toLocaleDateString();
-    const newHighScore = { name: userName, score: userScore, date: currentDate };
+    const newHighScore = { name: sanitizedUserName, score: userScore, date: currentDate };
 
     // Save the high score to Firebase
     db.collection("highScores")
@@ -291,12 +286,15 @@ saveScoreButton.addEventListener('click', async () => {
         // Add the new high score to the leaderboard
         const highScoreList = document.getElementById('high-score-list');
         const newListItem = document.createElement('li');
-        newListItem.textContent = `${userName}, Score: ${userScore}, Date: ${currentDate}`;
+        newListItem.textContent = `${sanitizedUserName}, Score: ${userScore}, Date: ${currentDate}`;
         highScoreList.appendChild(newListItem);
       })
       .catch(function (error) {
         console.error("Error adding high score: ", error);
       });
+  } else {
+    // Display an error message if the user name is too long
+    alert('User name must be 15 characters or less.');
   }
 });
 
