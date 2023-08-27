@@ -225,6 +225,7 @@
   cursor: pointer;
 }
 #score-table {
+  text-align: center;
   position: fixed;
   top: 10%;
   left: 50%;
@@ -235,6 +236,42 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   z-index: 2; /* Ensure it appears over the map */
   display: none; /* Initially hide the high score table */
+}
+#score{    font-size: 30px;
+
+}
+#fullscreen-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 1000;
+    }
+    #back-button {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 1000;
+    }
+    #high-score-list{
+      font-size: 20;
+  text-align: left;
+
+}
+#save-score {
+  color: rgb(255, 255, 255);
+  text-align: center;
+  background: url("a2.jpg");
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  width: fit-content; /* This sets the width of the button to fit its content */
+}
+#user-name {
+  display: block;
+  margin: 10px auto; /* Add margin to create space */
+  padding: 10px;
+  font-size: 15px;
+  text-align: center;
 }
 
       /* Styles for mobile phones */
@@ -258,6 +295,29 @@
   width: 230px;
   height: 220px;
   cursor: pointer;
+}
+#toggle-high-scores {
+    position: fixed;
+
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+        padding: 5px;
+
+        text-align: center;
+        width: 230px;
+        height: 80px;
+        background: url("a2.jpg");
+        position: absolute;
+        top: 120px;
+        right: 40px;
+  }
+  #score {
+  font-size: 50px;
+  text-align: center;
+  position: fixed;
+  top: 8%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
 }
         .text-center {
           font-size: 60px; /* Increased font size */
@@ -339,7 +399,7 @@
 
         text-align: center;
         width: 230px;
-        height: 160px;
+        height: 80px;
         background: url("a2.jpg");
         position: absolute;
         top: 30px;
@@ -377,22 +437,52 @@
       left: 10px;
       z-index: 1000;
     }
-      }
-      #fullscreen-button {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      z-index: 1000;
-    }
-    #back-button {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      z-index: 1000;
-    }
-    @media (min-width: 768px) and (max-width: 1024px) {
-  /* Adjust element positioning and dimensions */
+    #score-table {
+  position: fixed;
+  font-size: 30px; /* Increase the font size for leaderboard entries */
+
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-image: url('abchs.jpg'); /* Background image URL */
+  background-size: cover; /* Adjusts the background image size */
+  padding: 20px;
+  
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 2; /* Ensure it appears over the map */
+  display: none; /* Initially hide the high score table */
 }
+#high-score-list{
+  font-size: 30px;
+  text-align: left;
+
+}
+#submitted-message{
+  font-size: 30px;
+
+}
+#save-score {
+  color: rgb(255, 255, 255);
+  font-size: 30px;
+  text-align: center;
+  background: url("a2.jpg");
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  width: fit-content; /* This sets the width of the button to fit its content */
+}
+#user-name {
+  display: block;
+  margin: 10px auto; /* Add margin to create space */
+  padding: 10px;
+  font-size: 30px;
+  text-align: center;
+}
+
+      }
+
+
+
     </style>
 </head>
 <body>
@@ -415,13 +505,16 @@
   <button id="toggle-high-scores" onclick="toggleHighScores()">High Scores</button>
 
   <div id="score-table">
-    <h2>High Scores</h2>
+    <h2>Leaderboard</h2>
     <ol id="high-score-list">
       <!-- High scores will be added here dynamically -->
     </ol>
     <input type="text" id="user-name" placeholder="Your Name">
+    <div id="submitted-message" style="display: none;">Submitted!</div>
     <button id="save-score">Save Score</button>
   </div>
+  
+  
   
   <div id="score">
     <strong>Score:</strong> <span id="player-score">0</span>
@@ -440,6 +533,25 @@
       }
     }
   </script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+<script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyChoaveV-HaY_UaUUWFZz_AXWEyMYLxxU0",
+    authDomain: "map-master-ct.firebaseapp.com",
+    projectId: "map-master-ct",
+    storageBucket: "map-master-ct.appspot.com",
+    messagingSenderId: "888074293036",
+    appId: "1:888074293036:web:afb52990c3ab21a29f6689",
+    measurementId: "G-BTVPV92CX8"
+  };
   
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  // Initialize Firestore
+  var db = firebase.firestore();
+</script>
+
 </body>
 </html>
