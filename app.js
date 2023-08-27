@@ -22,6 +22,8 @@ L.control.fullscreen({
 // Initialize game variables
 // Initialize high scores from localStorage or an empty array
 
+let guessedCities = {};
+
 let playerScore = 0;
 let marker = null;
 let circle = null;
@@ -134,12 +136,19 @@ guessButton.addEventListener('click', async function () {
     const guessDistance = Math.round(marker.getLatLng().distanceTo([initialLat, initialLng]));
     
     const resultText = [];
-    
+      for (const guessedCity in guessedCities) {
+    const distance = marker.getLatLng().distanceTo(guessedCities[guessedCity].getLatLng());
+    if (distance <= 50000) {
+      alert('You are too close to a previously guessed city. Try another location.');
+      return;
+    }
+  }
     if (guessDistance < 50000) {
       endTime = Date.now();
       const timeTaken = (endTime - startTime) / 1000;
       playerScore += 10; // Calculate time taken in seconds
       resultText.push(`<strong>You win! Distance from answer:</strong> ${guessDistance / 1000} kilometers. <strong>Your Guess:</strong> ${guessCity}, ${guessCountry}. <strong>Time Taken:</strong> ${timeTaken} seconds`);
+      guessedCities[initialCity] = L.marker(marker.getLatLng()).addTo(map);
 
       stopTimer();
 
@@ -310,8 +319,10 @@ function startNewGame() {
   tingtong=1
   const timerElement = document.getElementById('timer');
   timerElement.textContent = 'Time Elapsed: 0 seconds';
-    // ...
-  
+  for (const guessedCity in guessedCities) {
+    map.removeLayer(guessedCities[guessedCity]);
+  }
+  guessedCities = {};  
   if (marker !== null) {
     map.removeLayer(marker);
     marker = null;
