@@ -51,6 +51,20 @@ async function initializeGame() {
     console.error('Error retrieving city, country, and capital for initial coordinates:', error);
   }
 }
+function sanitizeInput(input) {
+  // Replace '<' with '&lt;' and '&' with '&amp;'
+  return input.replace(/</g, '&lt;').replace(/&/g, '&amp;');
+}
+
+// Get the user input
+const userInput = document.getElementById('user-name').value;
+
+// Sanitize the user input
+const sanitizedInput = sanitizeInput(userInput);
+
+// Set the sanitized input back to the input element
+document.getElementById('user-name').value = sanitizedInput;
+
 function startTimer() {
   let seconds = 0;
   const timerElement = document.getElementById('timer');
