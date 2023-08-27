@@ -1,7 +1,6 @@
 // Chetan Tyagi
 // 2 August 2023
 
-let highScores = JSON.parse(localStorage.getItem('highScores')) || [];
 
 
 // Initialize the map
@@ -79,16 +78,30 @@ function stopTimer() {
   timerInterval = null;
   
 }
-function updateHighScoreList() {
+
+// Add this code to your existing updateHighScoreList function
+// Modify the updateHighScoreList function to include rankings
+async function updateHighScoreList() {
   const highScoreList = document.getElementById('high-score-list');
   highScoreList.innerHTML = '';
 
-  highScores.forEach((score, index) => {
-    const listItem = document.createElement('li');
-    listItem.textContent = `${score.name}: ${score.score} points (${score.date})`;
-    highScoreList.appendChild(listItem);
-  });
+  // Fetch high scores from Firebase Firestore and update the list
+  try {
+    const querySnapshot = await db.collection("highScores").orderBy("score", "desc").limit(10).get();
+    let rank = 1; // Initialize the ranking counter
+    querySnapshot.forEach((doc) => {
+      const scoreData = doc.data();
+      const listItem = document.createElement('li');
+      listItem.innerHTML = `<strong> ${scoreData.name}</strong>: ${scoreData.score} points (${scoreData.date})`;
+      highScoreList.appendChild(listItem);
+      rank++; // Increment the ranking counter for the next score
+    });
+  } catch (error) {
+    console.error("Error getting high scores: ", error);
+  }
 }
+
+
 
 // Handle guess button click event
 const guessButton = document.getElementById('guess-button');
@@ -230,40 +243,50 @@ function toggleHighScores() {
   highScoresVisible = !highScoresVisible;
 }
 
-function updateHighScoreList() {
-  const highScoreList = document.getElementById('high-score-list');
-  highScoreList.innerHTML = '';
-
-  highScores.slice(0, 10).forEach((score, index) => {
-    const listItem = document.createElement('li');
-    listItem.textContent = `${score.name}: ${score.score} points (${score.date})`;
-    highScoreList.appendChild(listItem);
-  });
-}
 
 // Initialize the game when the window finishes loading
 window.addEventListener('load', async function() {
   await initializeGame();
+  updateHighScoreList(); // Add this line
+
 });
+// Handle the submit score button click
 const saveScoreButton = document.getElementById('save-score');
-saveScoreButton.addEventListener('click', () => {
+saveScoreButton.addEventListener('click', async () => {
   const userNameInput = document.getElementById('user-name');
   const userName = userNameInput.value;
   if (userName && userName.trim() !== '') {
-    const userScore = playerScore; 
-    
+    const userScore = playerScore;
     const currentDate = new Date().toLocaleDateString();
     const newHighScore = { name: userName, score: userScore, date: currentDate };
-    highScores.push(newHighScore);
-    highScores.sort((a, b) => b.score - a.score);
-    localStorage.setItem('highScores', JSON.stringify(highScores));
-    updateHighScoreList();
-    userNameInput.value = '';
+
+    // Save the high score to Firebase
+    db.collection("highScores")
+      .add(newHighScore)
+      .then(function (docRef) {
+        console.log("High score saved with ID: ", docRef.id);
+
+        // Hide the input field and button
+        userNameInput.style.display = 'none';
+        saveScoreButton.style.display = 'none';
+
+        // Show the "Submitted!" message
+        const submittedMessage = document.getElementById('submitted-message');
+        submittedMessage.style.display = 'block';
+
+        // Add the new high score to the leaderboard
+        const highScoreList = document.getElementById('high-score-list');
+        const newListItem = document.createElement('li');
+        newListItem.textContent = `${userName}, Score: ${userScore}, Date: ${currentDate}`;
+        highScoreList.appendChild(newListItem);
+      })
+      .catch(function (error) {
+        console.error("Error adding high score: ", error);
+      });
   }
 });
-window.addEventListener('load', () => {
-  updateHighScoreList();
-});
+
+
 
 
 function startNewGame() {
