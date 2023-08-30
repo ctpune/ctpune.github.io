@@ -1,0 +1,557 @@
+<!-- Chetan Tyagi --> 
+<!-- 2 August 2023 --> 
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5QKCKQLMGD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5QKCKQLMGD');
+</script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="title" content="Chetan Tyagi">
+<meta property="og:title" content="Chetan Tyagi">
+<meta name="url" content="https://chetantyagi.me">
+<meta property="og:url" content="https://chetantyagi.me">
+<meta name="description" content="Map Master">
+<meta propert="og:description" content="Select a point on land and click on Guess to Begin">
+<link rel="canonical" href="https://chetantyagi.me/">
+    <link rel="icon" type="image/png" href="M1.png">
+    <meta charset="utf-8">
+    <title>Map Master</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    
+<style>
+  /* Common styles for both PC and mobile */
+  body {
+    background: url("b1.jpg");
+    font-family: "Rockwell", serif;
+  }
+  
+  #map {
+    position: fixed;
+    top: 56%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 350px;
+    width: 98%;
+    background: url('a2.jpg');
+    background-repeat: repeat;
+    border: 10px solid transparent;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin: 0 auto;
+    z-index: 1;
+    font-family: "Rockwell", serif;
+  }
+  
+  .text-center2 {
+    position: fixed;
+    top: 15%;
+    text-align: center;
+
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+
+    font-size: 19px;
+    font-family: "Rockwell", serif;
+  }
+  
+  .text-center {
+    position: fixed;
+    top: 88%;
+    left: 15%;
+    text-align: center;
+    font-size: 19px;
+    font-family: "Rockwell", serif;
+  }
+  
+  .text-center3 {
+    position: fixed;
+    top: 92%;
+    left: 65%;
+    text-align: center;
+    font-size: 19px;
+    font-family: "Rockwell", serif;
+  }
+  
+  .button {
+    position: fixed;
+
+    display: inline-block;
+    padding: 12px;
+    font-size: 19px;
+    color: rgb(236, 236, 236);
+    background-color: rgb(142, 97, 0);
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 10px;
+    width: 550px;
+    height: 50px;
+    background: url('a2.jpg');
+    font-family: "Rockwell", serif;
+  }
+  
+  h1 {
+    position: fixed;
+
+    font-size: 24px;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 7px;
+    font-family: "Rockwell", serif;
+  }
+  
+  #loading {
+    position: fixed;
+
+    display: none;
+    position: fixed;
+    top: 95%;
+    left: 7%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    text-align: center;
+    font-size: 12px;
+    font-family: "Rockwell", serif;
+  }
+  
+  .leaflet-control-attribution {
+    display: none !important;
+  }
+  
+  #result {
+    position: fixed;
+    top: 8%;
+    font-size: 18px;
+    font-family: "Rockwell", serif;
+  }
+  
+  #loading::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: calc(50% - 15px);
+    left: calc(50% + 70px);
+    transform: translate(-50%, -50%);
+    width: 14px;
+    height: 14px;
+    margin-left: 8px;
+    border-radius: 50%;
+    border: 4px solid #ccc;
+    border-color: #a15d0a transparent #a15d0a transparent;
+    animation: loading 1.2s linear infinite;
+    font-family: "Rockwell", serif;
+  }
+  
+  #loading span {
+    display: inline-block;
+    margin-right: 8px;
+  }
+  
+  @keyframes loading {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  #new-game-button {
+    position: fixed;
+
+    color: rgb(255, 255, 255);
+    font-size: 12px;
+    text-align: center;
+    width: 160px;
+    height: 30px;
+    background: url("a2.jpg");
+    top: 90px;
+    font-family: "Rockwell", serif;
+    right: 20px;
+  }
+  #toggle-high-scores {
+    position: fixed;
+
+    color: rgb(255, 255, 255);
+    font-size: 11px;
+    text-align: center;
+    width: 100px;
+    height: 30px;
+    background: url("a2.jpg");
+    top: 90px;
+    font-family: "Rockwell", serif;
+    right: 185px;
+}
+      #timer {
+        color: rgb(255, 255, 255);
+        font-size: px;
+        text-align: center;
+        width: 150px;
+        height: 50px;
+        background-color: rgba(174, 42, 42, 0.8);
+        position: absolute;
+        top: 2px;
+        right: 20px;
+        padding: 5px;
+        font-family: "Rockwell", serif;
+
+        background: url("a2.jpg");
+      }
+      .logo {
+  position: fixed;
+  top: -65px;
+  width: 180px;
+  height: 180px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+}
+.logolink {
+  width: 190px;
+  height: 180px;
+  cursor: pointer;
+}
+#score-table {
+  text-align: center;
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-image: url('abchs.jpg'); /* Background image URL */
+  background-size: cover; /* Adjusts the background image size */
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 2; /* Ensure it appears over the map */
+  display: none; /* Initially hide the high score table */
+}
+#score{    font-size: 30px;
+
+}
+#fullscreen-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 1000;
+    }
+    #back-button {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 1000;
+    }
+    #high-score-list{
+      font-size: 20;
+  text-align: left;
+
+}
+#save-score {
+  color: rgb(255, 255, 255);
+  text-align: center;
+  background: url("a2.jpg");
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  width: fit-content; /* This sets the width of the button to fit its content */
+}
+#user-name {
+  display: block;
+  margin: 10px auto; /* Add margin to create space */
+  padding: 10px;
+  font-size: 15px;
+  text-align: center;
+}
+
+      /* Styles for mobile phones */
+      @media only screen and (min-width: 300px) and (max-width: 980px) {
+        #score-table {
+
+  display: none; /* Initially hide the high score table */
+}
+        .logo {
+  position: fixed;
+  top: -65px;
+  width: 220px;
+  height: 210px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+}
+.logolink {
+  width: 230px;
+  height: 220px;
+  cursor: pointer;
+}
+#toggle-high-scores {
+    position: fixed;
+
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+        padding: 5px;
+
+        text-align: center;
+        width: 230px;
+        height: 80px;
+        background: url("a2.jpg");
+        position: absolute;
+        top: 120px;
+        right: 40px;
+  }
+  #score {
+  font-size: 50px;
+  text-align: center;
+  position: fixed;
+  top: 8%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+}
+        .text-center {
+          font-size: 60px; /* Increased font size */
+          text-align: center;
+        left: 20%;
+        top: 80%;
+        }
+        .text-center2 {
+          font-size: 35px; /* Increased font size */
+          text-align: center;
+            
+        }
+        .text-center3 {
+          display: none
+        }
+        #map {
+          position: fixed;
+        top: 52%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 98%;
+        background: url('a2.jpg');
+        background-repeat: repeat;
+        border: 10px solid transparent;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        margin: 0 auto;
+
+        z-index: 1;
+        font-family: "Rockwell", serif;
+
+          height: 900px; /* Increased map height */
+        }
+        #loading {
+        display: none;
+        position: fixed;
+        top: 15%;
+        left: 22%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        text-align: center;
+        font-size: 32px;
+        font-family: "Rockwell", serif;
+
+      }
+      #loading::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: calc(50% - 30px);
+        left: calc(50% + 194px);
+        transform: translate(-50%, -50%);
+        width: 40px;
+        height: 40px;
+        margin-left: 8px;
+        border-radius: 50%;
+        border: 4px solid #ccc;
+        border-color: #a15d0a transparent #a15d0a transparent;
+        animation: loading 1.2s linear infinite;
+      }
+      #timer {
+        color: rgb(255, 255, 255);
+        font-size: 40px;
+        text-align: center;
+        width: 260px;
+        height: 160px;
+        background-color: rgba(174, 42, 42, 0.8);
+        position: absolute;
+        right: 680px;
+        top: -7px;
+        padding: 5px;
+        background: url("a2.jpg");
+        font-family: "Rockwell", serif;
+
+      }
+      #new-game-button {
+        color: rgb(255, 255, 255);
+        font-size: 40px;
+        padding: 5px;
+
+        text-align: center;
+        width: 230px;
+        height: 80px;
+        background: url("a2.jpg");
+        position: absolute;
+        top: 30px;
+        right: 40px;
+      }
+      #result {
+        position: fixed;
+        top: 18%;
+        font-size: 35px;
+      }
+      .button {
+        display: inline-block;
+        padding: 12px;
+        font-size: 50px;
+        color: rgb(236, 236, 236);
+        background-color: rgb(142, 97, 0);
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        margin: 10px;
+        width: 600px;
+        height: 200px;
+        background: url('a2.jpg');
+
+      }
+      #fullscreen-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 1000;
+    }
+        #back-button {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 1000;
+    }
+    #score-table {
+  position: fixed;
+  font-size: 30px; /* Increase the font size for leaderboard entries */
+
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-image: url('abchs.jpg'); /* Background image URL */
+  background-size: cover; /* Adjusts the background image size */
+  padding: 20px;
+  
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 2; /* Ensure it appears over the map */
+  display: none; /* Initially hide the high score table */
+}
+#high-score-list{
+  font-size: 30px;
+  text-align: left;
+
+}
+#submitted-message{
+  font-size: 30px;
+
+}
+#save-score {
+  color: rgb(255, 255, 255);
+  font-size: 30px;
+  text-align: center;
+  background: url("a2.jpg");
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  width: fit-content; /* This sets the width of the button to fit its content */
+}
+#user-name {
+  display: block;
+  margin: 10px auto; /* Add margin to create space */
+  padding: 10px;
+  font-size: 30px;
+  text-align: center;
+}
+
+      }
+
+
+
+    </style>
+</head>
+<body>
+    <a href="index.html" target="_blank" class="logo-link">
+        <img src="mm1.png" alt="Go to https://chetantyagi.me/" class="logo" />
+      </a>
+  <div id="loading">Loading the coordinates...</div>
+  <p id="timer">Time Elapsed:<br> 0 seconds</p>
+  <div id="result"></div>
+  <div class="text-center2">Select a point on land and click on Guess City Button to Begin</div>
+  <div id="map"></div>
+  <div class="text-center3">
+    <input type="checkbox" id="show-coordinates">
+    <label for="show-coordinates">Show Coordinates</label>
+  </div>
+  <div class="text-center">
+    <button id="guess-button" class="button">Guess City</button>
+  </div>
+  <button id="new-game-button" onclick="startNewGame()">New Game</button>
+  <button id="toggle-high-scores" onclick="toggleHighScores()">High Scores</button>
+
+  <div id="score-table">
+    <h2>Leaderboard</h2>
+    <ol id="high-score-list">
+      <!-- High scores will be added here dynamically -->
+    </ol>
+    <input type="text" id="user-name" placeholder="Your Name">
+    <div id="submitted-message" style="display: none;">Submitted!</div>
+    <button id="save-score">Save Score</button>
+  </div>
+  
+  
+  
+  <div id="score">
+    <strong>Score:</strong> <span id="player-score">0</span>
+  </div>
+  
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.fullscreen/1.4.2/Control.FullScreen.min.js"></script>
+  <script src="app.js"></script>
+  <script>
+    function toggleFullScreen() {
+      const mapElement = document.getElementById("map");
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      } else {
+        mapElement.requestFullscreen();
+      }
+    }
+  </script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+<script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyChoaveV-HaY_UaUUWFZz_AXWEyMYLxxU0",
+    authDomain: "map-master-ct.firebaseapp.com",
+    projectId: "map-master-ct",
+    storageBucket: "map-master-ct.appspot.com",
+    messagingSenderId: "888074293036",
+    appId: "1:888074293036:web:afb52990c3ab21a29f6689",
+    measurementId: "G-BTVPV92CX8"
+  };
+  
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  // Initialize Firestore
+  var db = firebase.firestore();
+</script>
+
+</body>
+</html>
