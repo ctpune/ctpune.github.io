@@ -7,7 +7,6 @@
 const map = L.map('map').setView([0, 0], 2);
 // Add this line instead
 const tileLayer = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.{ext}', {
-  attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.',
   subdomains: 'abcd',
   minZoom: 0,
   maxZoom: 18,
@@ -147,7 +146,7 @@ guessButton.addEventListener('click', async function () {
       endTime = Date.now();
       const timeTaken = (endTime - startTime) / 1000;
       playerScore += 10; // Calculate time taken in seconds
-      resultText.push(`<strong>You win! Distance from answer:</strong> ${guessDistance / 1000} kilometers. <strong>Your Guess:</strong> ${guessCity}, ${guessCountry}. <strong>Time Taken:</strong> ${timeTaken} seconds`);
+      resultText.push(`<strong>You win! Distance from answer:</strong> ${guessDistance / 1000} kilometers. <strong>Your Guess:</strong> ${guessCity}, ${guessCountry}.`);
       guessedCities[initialCity] = L.marker(marker.getLatLng()).addTo(map);
 
       stopTimer();
