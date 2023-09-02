@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mapillary Photo Viewer</title>
+</head>
+<body>
+    <h1>Mapillary Photo Viewer</h1>
+    
+    <div id="photo-container">
+        <!-- The Mapillary photo will be displayed here -->
+    </div>
+    
+    <script>
+        const imageId = '1067023661329016';
+        const clientId = '6567123976742596';
+        const accessToken = 'MLY|6567123976742596|e9835e8db194154123b48d4979d5927c'; // Replace with your Mapillary access token
+
+        // Construct the API request URL
+        const apiUrl = `https://graph.mapillary.com/${imageId}?access_token=${accessToken}`;
+        console.log("Image ID:", imageId); // Log the value of imageId
+        
+console.log("API URL:", apiUrl); // Log the constructed URL
+if (imageId !== undefined) {
+  // Construct and make the GET request
+} else {
+  console.error("Image ID is undefined. Cannot make the request.");
+}
+
+
+        // Create an HTML element to display the photo
+        const photoElement = document.createElement('img');
+
+        // Make a GET request to fetch the photo data
+        fetch(apiUrl)
+            .then((response) => response.json())
+            .then((data) => {
+                // Extract the URL of the photo from the API response
+                const photoUrl = data.thumb_1024_url; // You can choose the desired photo size
+                photoElement.src = photoUrl;
+
+                // Append the photo element to the container
+                document.getElementById('photo-container').appendChild(photoElement);
+            })
+            .catch((error) => {
+                console.error('Error fetching Mapillary photo:', error);
+            });
+    </script>
+</body>
+</html>
