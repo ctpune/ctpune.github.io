@@ -1,3 +1,3 @@
 # ctpune.github.io
 
-The website is live at chetantyagi.me
+The website is live at www.chetantyagi.me
