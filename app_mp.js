@@ -6,7 +6,7 @@
 // Initialize the map
 const map = L.map('map').setView([0, 0], 2);
 // Add this line instead
-const tileLayer = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain-background/{z}/{x}/{y}.png', {
+const tileLayer = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.{ext}', {
   subdomains: 'abcd',
   minZoom: 0,
   maxZoom: 18,
@@ -22,7 +22,7 @@ L.control.fullscreen({
 // Initialize high scores from localStorage or an empty array
 
 let guessedCities = {};
-
+let currentPlayer = null;
 let playerScore = 0;
 let marker = null;
 let circle = null;
@@ -52,7 +52,47 @@ async function initializeGame() {
     console.error('Error retrieving city, country, and capital for initial coordinates:', error);
   }
 }
-
+// Game Logic - Determine Correctness and Calculate Score
+async function guessCity(cityName, countryName) {
+    if (!currentPlayer) {
+      console.error('Player not defined.');
+      return;
+    }
+  
+    // Get the game data from Firestore
+    const gameRef = db.collection('mp_data').doc(currentPlayer);
+    const gameSnapshot = await gameRef.get();
+    const gameData = gameSnapshot.data();
+  
+    // Check if it's the player's turn
+    if (currentPlayer !== gameData.currentTurn) {
+      console.log('Not your turn.');
+      return;
+    }
+  
+    // Compare the guessed city and country with the initial city and country
+    const isCorrectGuess = (
+      cityName.toLowerCase() === gameData.initialCity.toLowerCase() &&
+      countryName.toLowerCase() === gameData.initialCountry.toLowerCase()
+    );
+  
+    // Calculate the score change based on correctness
+    const scoreChange = isCorrectGuess ? 10 : -5;
+  
+    // Update the player's score
+    gameData[currentPlayer + 'Score'] += scoreChange;
+  
+    // Switch turns
+    gameData.currentTurn = currentPlayer === gameData.player1 ? gameData.player2 : gameData.player1;
+  
+    // Update the game data in Firestore
+    await gameRef.set(gameData);
+  
+    console.log(`Guess: ${cityName}, ${countryName}, Score Change: ${scoreChange}`);
+  }
+  
+  // Call createOrJoinGame with the username when a player starts
+  createOrJoinGame('Player1');
 function startTimer() {
   let seconds = 0;
   const timerElement = document.getElementById('timer');
@@ -89,7 +129,7 @@ async function updateHighScoreList() {
 
   // Fetch high scores from Firebase Firestore and update the list
   try {
-    const querySnapshot = await db.collection("hardmode_score").orderBy("score", "desc").limit(10).get();
+    const querySnapshot = await db.collection("highScores").orderBy("score", "desc").limit(10).get();
     let rank = 1; // Initialize the ranking counter
     querySnapshot.forEach((doc) => {
       const scoreData = doc.data();
@@ -146,7 +186,7 @@ guessButton.addEventListener('click', async function () {
       endTime = Date.now();
       const timeTaken = (endTime - startTime) / 1000;
       playerScore += 10; // Calculate time taken in seconds
-      resultText.push(`<strong>You win! Distance from answer:</strong> ${guessDistance / 1000} kilometers.`);
+      resultText.push(`<strong>You win! Distance from answer:</strong> ${guessDistance / 1000} kilometers. <strong>Your Guess:</strong> ${guessCity}, ${guessCountry}.`);
       guessedCities[initialCity] = L.marker(marker.getLatLng()).addTo(map);
 
       stopTimer();
@@ -155,7 +195,7 @@ guessButton.addEventListener('click', async function () {
       const playerScoreElement = document.getElementById('player-score');
       playerScoreElement.textContent = playerScore;
     }else {
-      resultText.push(`<strong>Distance from answer:</strong> ${guessDistance / 1000} kilometers. `);
+      resultText.push(`<strong>Distance from answer:</strong> ${guessDistance / 1000} kilometers. <strong>Your Guess:</strong> ${guessCity}, ${guessCountry}.`);
       if (initialLat.toFixed(4) !== 0.0000 && initialCity !== "" && initialCity !== "Unknown") {
         resultText.push(`<strong>To find:</strong> ${initialCity}, ${initialCountry}.`);
       } else {
@@ -278,7 +318,7 @@ saveScoreButton.addEventListener('click', async () => {
     const newHighScore = { name: sanitizedUserName, score: userScore, date: currentDate };
 
     // Save the high score to Firebase
-    db.collection("hardmode_score")
+    db.collection("highScores")
       .add(newHighScore)
       .then(function (docRef) {
         console.log("High score saved with ID: ", docRef.id);

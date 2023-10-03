@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mapillary Street View of Berlin</title>
+    <script src="https://unpkg.com/mapillary-js@4.1.1/dist/mapillary.js"></script>
+    <link
+      href="https://unpkg.com/mapillary-js@4.1.1/dist/mapillary.css"
+      rel="stylesheet"
+    />
+</head>
+<body>
+    <div id="mly" style="width: 400px; height: 300px;"></div>
+
+    <script>
+var { Viewer } = mapillary;
+
+var viewer = new Viewer({
+  accessToken: "MLY|6567123976742596|e9835e8db194154123b48d4979d5927c",
+  container: "mly",
+  imageId: "1067023661329016",
+});
+</script>
+</body>
+</html>

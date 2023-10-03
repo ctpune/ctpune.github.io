@@ -1,1 +1,543 @@
-const _0xd1f19d=_0xcddb;function _0xcddb(_0x7f5764,_0x30680b){const _0x3addf7=_0x3add();return _0xcddb=function(_0xcddb13,_0x5ebeb4){_0xcddb13=_0xcddb13-0x1e2;let _0x9e624d=_0x3addf7[_0xcddb13];return _0x9e624d;},_0xcddb(_0x7f5764,_0x30680b);}(function(_0x5055ee,_0x18cfa3){const _0x2a5066=_0xcddb,_0x5905a1=_0x5055ee();while(!![]){try{const _0x104af0=-parseInt(_0x2a5066(0x1f2))/0x1*(-parseInt(_0x2a5066(0x219))/0x2)+parseInt(_0x2a5066(0x1fc))/0x3*(parseInt(_0x2a5066(0x20a))/0x4)+parseInt(_0x2a5066(0x203))/0x5+-parseInt(_0x2a5066(0x1ff))/0x6*(parseInt(_0x2a5066(0x1fa))/0x7)+-parseInt(_0x2a5066(0x231))/0x8+-parseInt(_0x2a5066(0x207))/0x9+parseInt(_0x2a5066(0x235))/0xa;if(_0x104af0===_0x18cfa3)break;else _0x5905a1['push'](_0x5905a1['shift']());}catch(_0x3c94b1){_0x5905a1['push'](_0x5905a1['shift']());}}}(_0x3add,0xd90fe));const map=L[_0xd1f19d(0x233)](_0xd1f19d(0x233))[_0xd1f19d(0x252)]([0x0,0x0],0x2),tileLayer=L[_0xd1f19d(0x245)](_0xd1f19d(0x236),{'subdomains':'abcd','minZoom':0x0,'maxZoom':0x12,'ext':_0xd1f19d(0x223)})[_0xd1f19d(0x214)](map);L[_0xd1f19d(0x227)][_0xd1f19d(0x22e)]({'position':_0xd1f19d(0x21d),'title':_0xd1f19d(0x226)})[_0xd1f19d(0x214)](map);let guessedCities={},playerScore=0x0,marker=null,circle=null,initialCity='',initialCountry='',initialCapital='',initialLat=0x0,initialLng=0x0,startTime=0x0,endTime=0x0,timerInterval=null;tingtong=0x0;async function initializeGame(){const _0x49b4d0=_0xd1f19d;[initialLat,initialLng]=await getRandomLandCoordinates();const _0x3a64e7=_0x49b4d0(0x1ea)+initialLat+_0x49b4d0(0x1f4)+initialLng;try{const _0x539209=await fetch(_0x3a64e7),_0x327d49=await _0x539209[_0x49b4d0(0x24d)]();initialCity=_0x327d49[_0x49b4d0(0x205)]['city']||_0x327d49[_0x49b4d0(0x205)][_0x49b4d0(0x264)]||_0x327d49[_0x49b4d0(0x205)][_0x49b4d0(0x21c)]||_0x327d49[_0x49b4d0(0x205)][_0x49b4d0(0x218)]||_0x49b4d0(0x267),initialCountry=_0x327d49[_0x49b4d0(0x205)][_0x49b4d0(0x209)]||_0x49b4d0(0x267);}catch(_0x46178a){console[_0x49b4d0(0x266)](_0x49b4d0(0x246),_0x46178a);}}function startTimer(){const _0x32a82d=_0xd1f19d;let _0x4fa522=0x0;const _0x442b9f=document[_0x32a82d(0x1e9)](_0x32a82d(0x1e8));timerInterval=setInterval(()=>{const _0xca907=_0x32a82d;_0x4fa522++,_0x442b9f[_0xca907(0x23b)]=_0xca907(0x211)+_0x4fa522+_0xca907(0x256);},0x3e8),tingtong=0x5;}map['on'](_0xd1f19d(0x202),function(_0x9f0b65){const _0x252179=_0xd1f19d;marker===null?marker=L[_0x252179(0x269)](_0x9f0b65[_0x252179(0x228)])['addTo'](map):marker[_0x252179(0x201)](_0x9f0b65[_0x252179(0x228)]);});if(tingtong!=0x5){startTimer(),startTime=Date[_0xd1f19d(0x24e)]();;}function stopTimer(){clearInterval(timerInterval),timerInterval=null;}async function updateHighScoreList(){const _0x267017=_0xd1f19d,_0x4d0631=document[_0x267017(0x1e9)](_0x267017(0x213));_0x4d0631[_0x267017(0x25f)]='';try{const _0x34ee3d=await db['collection'](_0x267017(0x22d))[_0x267017(0x248)](_0x267017(0x1f8),'desc')[_0x267017(0x210)](0xa)[_0x267017(0x229)]();let _0x573041=0x1;_0x34ee3d[_0x267017(0x230)](_0x239c57=>{const _0x3b0c78=_0x267017,_0x55501d=_0x239c57[_0x3b0c78(0x25c)](),_0x3787a6=document[_0x3b0c78(0x1f1)]('li');_0x3787a6['innerHTML']='<strong>\x20'+_0x55501d['name']+_0x3b0c78(0x242)+_0x55501d['score']+_0x3b0c78(0x234)+_0x55501d[_0x3b0c78(0x24b)]+')',_0x4d0631[_0x3b0c78(0x23e)](_0x3787a6),_0x573041++;});}catch(_0x21e092){console['error'](_0x267017(0x24c),_0x21e092);}}const guessButton=document[_0xd1f19d(0x1e9)]('guess-button'),showCoordinatesCheckbox=document[_0xd1f19d(0x1e9)](_0xd1f19d(0x26b));guessButton[_0xd1f19d(0x23d)](_0xd1f19d(0x202),async function(){const _0x2356e6=_0xd1f19d;if(marker===null)return;const _0x230d41=marker[_0x2356e6(0x247)]()[_0x2356e6(0x204)][_0x2356e6(0x1ed)](0x4),_0x5006b6=marker[_0x2356e6(0x247)]()[_0x2356e6(0x21b)][_0x2356e6(0x1ed)](0x4),_0x1787a6=document[_0x2356e6(0x241)](_0x2356e6(0x21e));_0x1787a6!==null&&(_0x1787a6[_0x2356e6(0x23b)]='');const _0x2be32b=document['getElementById'](_0x2356e6(0x25e));_0x2be32b[_0x2356e6(0x225)][_0x2356e6(0x25d)]=_0x2356e6(0x221);const _0x25c047=_0x2356e6(0x1ea)+_0x230d41+_0x2356e6(0x1f4)+_0x5006b6;try{const _0x5e96d4=await fetch(_0x25c047),_0x3420fa=await _0x5e96d4[_0x2356e6(0x24d)](),_0x4f1c5c=_0x3420fa[_0x2356e6(0x205)][_0x2356e6(0x1f3)]||_0x3420fa[_0x2356e6(0x205)][_0x2356e6(0x264)]||_0x3420fa[_0x2356e6(0x205)][_0x2356e6(0x21c)]||_0x3420fa['address'][_0x2356e6(0x218)]||_0x2356e6(0x267),_0x3c7b19=_0x3420fa[_0x2356e6(0x205)][_0x2356e6(0x209)]||_0x2356e6(0x267),_0x1840ff=Math[_0x2356e6(0x1e6)](marker[_0x2356e6(0x247)]()[_0x2356e6(0x259)]([initialLat,initialLng])),_0x2975a3=[];for(const _0x14d15e in guessedCities){const _0x3353ff=marker['getLatLng']()[_0x2356e6(0x259)](guessedCities[_0x14d15e][_0x2356e6(0x247)]());if(_0x3353ff<=0xc350){alert(_0x2356e6(0x22a));return;}}if(_0x1840ff<0xc350){endTime=Date[_0x2356e6(0x24e)]();const _0x34df66=(endTime-startTime)/0x3e8;playerScore+=0xa,_0x2975a3[_0x2356e6(0x23f)](_0x2356e6(0x1e2)+_0x1840ff/0x3e8+_0x2356e6(0x243)+_0x4f1c5c+',\x20'+_0x3c7b19+'.\x20'),guessedCities[initialCity]=L[_0x2356e6(0x269)](marker[_0x2356e6(0x247)]())[_0x2356e6(0x214)](map),stopTimer(),_0x2975a3[_0x2356e6(0x23f)](_0x2356e6(0x21f));const _0x2dbf72=document[_0x2356e6(0x1e9)]('player-score');_0x2dbf72[_0x2356e6(0x23b)]=playerScore;}else{_0x2975a3[_0x2356e6(0x23f)](_0x2356e6(0x215)+_0x1840ff/0x3e8+_0x2356e6(0x243)+_0x4f1c5c+',\x20'+_0x3c7b19+'.');if(initialLat[_0x2356e6(0x1ed)](0x4)!==0x0&&initialCity!==''&&initialCity!==_0x2356e6(0x267)){}else{let _0x3058a6=![];do{[initialLat,initialLng]=await getRandomLandCoordinates();const _0x5d2281=_0x2356e6(0x1ea)+initialLat+_0x2356e6(0x1f4)+initialLng;try{const _0x50d7ff=await fetch(_0x5d2281),_0x17da20=await _0x50d7ff[_0x2356e6(0x24d)]();initialCity=_0x17da20[_0x2356e6(0x205)]['city']||_0x17da20['address'][_0x2356e6(0x264)]||_0x17da20[_0x2356e6(0x205)][_0x2356e6(0x21c)]||_0x17da20[_0x2356e6(0x205)]['hamlet']||_0x2356e6(0x267),_0x3058a6=initialCity!==''&&initialCity!=='Unknown',initialCountry=_0x17da20[_0x2356e6(0x205)][_0x2356e6(0x209)]||_0x2356e6(0x267);}catch(_0x1f6493){console[_0x2356e6(0x266)]('Error\x20retrieving\x20city,\x20country,\x20and\x20capital\x20for\x20initial\x20coordinates:',_0x1f6493);}}while(!_0x3058a6);_0x2975a3[_0x2356e6(0x23f)](_0x2356e6(0x265)+initialCity+',\x20'+initialCountry+'.');}}showCoordinatesCheckbox[_0x2356e6(0x24f)]&&(_0x2975a3[_0x2356e6(0x23f)](_0x2356e6(0x22b)+_0x230d41+',\x20'+_0x5006b6),_0x2975a3[_0x2356e6(0x23f)]('<strong>Answer\x20Coordinates:</strong>\x20'+initialLat['toFixed'](0x4)+',\x20'+initialLng[_0x2356e6(0x1ed)](0x4)));circle!==null&&map[_0x2356e6(0x1f5)](circle);initialCity!==_0x2356e6(0x267)&&(circle=L[_0x2356e6(0x232)](marker[_0x2356e6(0x247)](),{'color':_0x2356e6(0x1e4),'radius':0x3e8})[_0x2356e6(0x214)](map));const _0x529e16=document[_0x2356e6(0x1e9)](_0x2356e6(0x26a));_0x529e16[_0x2356e6(0x25f)]=_0x2975a3[_0x2356e6(0x216)](_0x2356e6(0x23c));}catch(_0x2357e5){console[_0x2356e6(0x266)](_0x2356e6(0x21a),_0x2357e5);}finally{_0x2be32b['style'][_0x2356e6(0x25d)]=_0x2356e6(0x1e3);}});function sanitizeInput(_0x482506){const _0x1c8cb0=_0xd1f19d;return _0x482506[_0x1c8cb0(0x25b)](/</g,'&lt;')[_0x1c8cb0(0x25b)](/&/g,_0x1c8cb0(0x240));}async function getRandomLandCoordinates(){const _0x176d2b=_0xd1f19d,_0x3582b7=citybeforeHyphen,_0x3de7a6=_0x176d2b(0x220)+encodeURIComponent(_0x3582b7)+_0x176d2b(0x1ef);let _0x22b6c7,_0x1d21b9,_0x3583b7,_0x406801;try{const _0x55ef7f=await fetch(_0x3de7a6),_0x3bdf6e=await _0x55ef7f['json']();_0x3bdf6e&&_0x3bdf6e[0x0]&&(_0x22b6c7=parseFloat(_0x3bdf6e[0x0][_0x176d2b(0x204)]),_0x1d21b9=parseFloat(_0x3bdf6e[0x0][_0x176d2b(0x1f6)]));}catch(_0x347d40){console[_0x176d2b(0x266)](_0x176d2b(0x208),_0x3582b7,_0x347d40);}return[_0x22b6c7,_0x1d21b9];}let highScoresVisible=![];function toggleHighScores(){const _0x4bb905=_0xd1f19d,_0x246251=document['getElementById']('score-table'),_0xee18a8=document[_0x4bb905(0x1e9)](_0x4bb905(0x268));highScoresVisible?(_0x246251[_0x4bb905(0x225)]['display']=_0x4bb905(0x1e3),_0xee18a8[_0x4bb905(0x23b)]=_0x4bb905(0x23a)):(_0x246251[_0x4bb905(0x225)][_0x4bb905(0x25d)]='block',_0xee18a8[_0x4bb905(0x23b)]='Hide\x20High\x20Scores'),highScoresVisible=!highScoresVisible;}let mapVisible=![];function toggleMap(){const _0x38391b=_0xd1f19d,_0x3edc77=document[_0x38391b(0x1e9)](_0x38391b(0x233)),_0x2659fb=document['getElementById'](_0x38391b(0x222));mapVisible?(_0x3edc77[_0x38391b(0x225)][_0x38391b(0x261)]='hidden',_0x2659fb[_0x38391b(0x23b)]=_0x38391b(0x24a)):(_0x3edc77['style']['visibility']=_0x38391b(0x262),_0x2659fb['textContent']=_0x38391b(0x1e7)),mapVisible=!mapVisible;}window['addEventListener'](_0xd1f19d(0x20c),async function(){await initializeGame(),updateHighScoreList();});const cityIds=['paris-288688432935068',_0xd1f19d(0x263),_0xd1f19d(0x250),'barcelona-987420751796837',_0xd1f19d(0x244),_0xd1f19d(0x260),_0xd1f19d(0x206),'moscow-209922360944539\x20',_0xd1f19d(0x254),_0xd1f19d(0x217),_0xd1f19d(0x1f7),_0xd1f19d(0x1f0),_0xd1f19d(0x237),_0xd1f19d(0x1fd),'ualberta-276369800814495',_0xd1f19d(0x251),_0xd1f19d(0x257),'calgary-1092582851151417','rio-477309337031051','hanoi-685942156728923'];function shuffleArray(_0x49607d){const _0x365b98=_0xd1f19d;for(let _0x59e2f7=_0x49607d[_0x365b98(0x258)]-0x1;_0x59e2f7>0x0;_0x59e2f7--){const _0x31534a=Math[_0x365b98(0x22c)](Math[_0x365b98(0x200)]()*(_0x59e2f7+0x1));[_0x49607d[_0x59e2f7],_0x49607d[_0x31534a]]=[_0x49607d[_0x31534a],_0x49607d[_0x59e2f7]];}}shuffleArray(cityIds);const streetViewIframe=document['getElementById'](_0xd1f19d(0x22f)),randomCityId=cityIds[Math[_0xd1f19d(0x22c)](Math['random']()*cityIds[_0xd1f19d(0x258)])],citybeforeHyphen=randomCityId[_0xd1f19d(0x212)]('-')[0x0],numbersAfterHyphen=randomCityId['split']('-')[0x1];function _0x3add(){const _0x46f08b=['log','value','toFixed','catch','&format=json','houston-626149635009294','createElement','1ysbKip','city','&lon=','removeLayer','lon','zermatt-1116657515505173','score','MLY|6567123976742596|e9835e8db194154123b48d4979d5927c','9350292PyeqEO','.text-container','418557GvLUyF','banff-162769565655436','then','6hVznAH','random','setLatLng','click','1834510LWZxGh','lat','address','berlin-3239772952947894','5722650tvLMmY','Error\x20retrieving\x20city\x20information\x20for:','country','12tjLRGv','insertBefore','load','save-score','collection','trim','limit','Time\x20Elapsed:\x20','split','high-score-list','addTo','<strong>Distance\x20from\x20answer:</strong>\x20','join','pisa-243324604210417','hamlet','557450cLJKJT','Error\x20retrieving\x20nearest\x20city,\x20country,\x20and\x20capital:','lng','village','topright','.text-center2','Reload\x20the\x20page\x20to\x20start\x20a\x20new\x20round.','https://nominatim.openstreetmap.org/search?city=','block','toggle-map','png','button','style','Toggle\x20Fullscreen','control','latlng','get','You\x20are\x20too\x20close\x20to\x20a\x20previously\x20guessed\x20city.\x20Try\x20another\x20location.','<strong>Guess\x20Coordinates:</strong>\x20','floor','street_score','fullscreen','streetViewIframe','forEach','8773848zBsemH','circle','map','\x20points\x20(','28932390ZCHmBM','https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.{ext}','new\x20york-126491143334729','Error\x20adding\x20high\x20score:\x20','toLocaleDateString','Show\x20High\x20Scores','textContent','<br>','addEventListener','appendChild','push','&amp;','querySelector','</strong>:\x20','\x20kilometers.\x20<strong>Your\x20Guess:</strong>\x20','beijing-604012977205983','tileLayer','Error\x20retrieving\x20city,\x20country,\x20and\x20capital\x20for\x20initial\x20coordinates:','getLatLng','orderBy','firstChild','Show\x20Map','date','Error\x20getting\x20high\x20scores:\x20','json','now','checked','keystone-768858467067157','london-557807761891307','setView','new-game-button','lucerne-1112576252586784',',\x20Date:\x20','\x20seconds','oslo-229430919192635','length','distanceTo','add','replace','data','display','loading','innerHTML','tokyo-1195388297830542','visibility','visible','agra-156038159745395','town','<strong>To\x20find:</strong>\x20','error','Unknown','toggle-high-scores','marker','result','show-coordinates','<strong>You\x20win!\x20Distance\x20from\x20answer:</strong>\x20','none','red','mly','round','Hide\x20Map','timer','getElementById','https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat='];_0x3add=function(){return _0x46f08b;};return _0x3add();}var {Viewer}=mapillary,viewer=new Viewer({'accessToken':_0xd1f19d(0x1f9),'container':_0xd1f19d(0x1e5),'imageId':numbersAfterHyphen});const saveScoreButton=document['getElementById'](_0xd1f19d(0x20d));saveScoreButton[_0xd1f19d(0x23d)](_0xd1f19d(0x202),async()=>{const _0x10eb60=_0xd1f19d,_0x4e72ae=document[_0x10eb60(0x1e9)]('user-name'),_0x2dd9fa=_0x4e72ae[_0x10eb60(0x1ec)],_0x21235a=sanitizeInput(_0x2dd9fa);if(_0x21235a&&_0x21235a[_0x10eb60(0x20f)]()!==''&&_0x21235a[_0x10eb60(0x258)]<=0xf){const _0x5cacd7=playerScore,_0x2b6e3a=new Date()[_0x10eb60(0x239)](),_0x10f5ac={'name':_0x21235a,'score':_0x5cacd7,'date':_0x2b6e3a};db[_0x10eb60(0x20e)](_0x10eb60(0x22d))[_0x10eb60(0x25a)](_0x10f5ac)[_0x10eb60(0x1fe)](function(_0x2ecf47){const _0x4b5290=_0x10eb60;console[_0x4b5290(0x1eb)]('High\x20score\x20saved\x20with\x20ID:\x20',_0x2ecf47['id']),_0x4e72ae['style'][_0x4b5290(0x25d)]='none',saveScoreButton['style']['display']=_0x4b5290(0x1e3);const _0x51d76f=document[_0x4b5290(0x1e9)]('submitted-message');_0x51d76f[_0x4b5290(0x225)]['display']=_0x4b5290(0x221);const _0x2cd8ed=document[_0x4b5290(0x1e9)](_0x4b5290(0x213)),_0x1d314f=document[_0x4b5290(0x1f1)]('li');_0x1d314f[_0x4b5290(0x23b)]=_0x21235a+',\x20Score:\x20'+_0x5cacd7+_0x4b5290(0x255)+_0x2b6e3a,_0x2cd8ed[_0x4b5290(0x23e)](_0x1d314f);})[_0x10eb60(0x1ee)](function(_0x1c33bf){const _0x4f0bea=_0x10eb60;console[_0x4f0bea(0x266)](_0x4f0bea(0x238),_0x1c33bf);});}else alert('User\x20name\x20must\x20be\x2015\x20characters\x20or\x20less.');});const newGameButton=document[_0xd1f19d(0x1f1)](_0xd1f19d(0x224));newGameButton['id']=_0xd1f19d(0x253),newGameButton['textContent']='New\x20Game',newGameButton['addEventListener'](_0xd1f19d(0x202),startNewGame);const textContainer=document[_0xd1f19d(0x241)](_0xd1f19d(0x1fb));textContainer[_0xd1f19d(0x20b)](newGameButton,textContainer[_0xd1f19d(0x249)]);
+// Chetan Tyagi
+// 2 August 2023
+
+
+
+// Initialize the map
+const map = L.map('map').setView([0, 0], 2);
+// Add this line instead
+const tileLayer = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.{ext}', {
+  subdomains: 'abcd',
+  minZoom: 0,
+  maxZoom: 18,
+  ext: 'png'
+}).addTo(map);
+L.control.fullscreen({
+  position: 'topright',
+  title: 'Toggle Fullscreen'
+
+}).addTo(map);
+
+// Initialize game variables
+// Initialize high scores from localStorage or an empty array
+
+let guessedCities = {};
+
+let playerScore = 0;
+let marker = null;
+let circle = null;
+let initialCity = '';
+let initialCountry = '';
+let initialCapital = '';
+let initialLat = 0;
+let initialLng = 0;
+let startTime = 0;
+let endTime = 0;
+let timerInterval = null;
+tingtong=0
+// Use Nominatim API to retrieve the city, country, and capital for the initial coordinates
+async function initializeGame() {
+  [initialLat, initialLng] = await getRandomLandCoordinates();
+  const nominatimUrl = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${initialLat}&lon=${initialLng}`;
+  try {
+    const response = await fetch(nominatimUrl);
+    const data = await response.json();
+    initialCity = data.address.city || data.address.town || data.address.village || data.address.hamlet || 'Unknown';
+    initialCountry = data.address.country || 'Unknown';
+
+    
+    //initialCapital = data.address.country_capital || 'Unknown';
+    
+  } catch (error) {
+    console.error('Error retrieving city, country, and capital for initial coordinates:', error);
+  }
+}
+
+function startTimer() {
+  let seconds = 0;
+  const timerElement = document.getElementById('timer');
+
+  timerInterval = setInterval(() => {
+    seconds++;
+    timerElement.textContent = `Time Elapsed: ${seconds} seconds`;
+  }, 1000);
+  tingtong=5
+}
+// Add click event listener to map
+map.on('click', function(event) {
+  if (marker === null) {
+    // Add marker at clicked location
+    marker = L.marker(event.latlng).addTo(map);
+  } else {
+    // Move marker to clicked location
+    marker.setLatLng(event.latlng);
+  }
+});
+if (tingtong!=5){  startTimer()    
+    startTime = Date.now();
+   ; 
+ }
+
+function stopTimer() {
+  clearInterval(timerInterval);
+  timerInterval = null;
+  
+}
+
+// Add this code to your existing updateHighScoreList function
+// Modify the updateHighScoreList function to include rankings
+async function updateHighScoreList() {
+  const highScoreList = document.getElementById('high-score-list');
+  highScoreList.innerHTML = '';
+
+  // Fetch high scores from Firebase Firestore and update the list
+  try {
+    const querySnapshot = await db.collection("street_score").orderBy("score", "desc").limit(10).get();
+    let rank = 1; // Initialize the ranking counter
+    querySnapshot.forEach((doc) => {
+      const scoreData = doc.data();
+      const listItem = document.createElement('li');
+      listItem.innerHTML = `<strong> ${scoreData.name}</strong>: ${scoreData.score} points (${scoreData.date})`;
+      highScoreList.appendChild(listItem);
+      rank++; // Increment the ranking counter for the next score
+    });
+  } catch (error) {
+    console.error("Error getting high scores: ", error);
+  }
+}
+
+
+
+// Handle guess button click event
+const guessButton = document.getElementById('guess-button');
+const showCoordinatesCheckbox = document.getElementById('show-coordinates');
+guessButton.addEventListener('click', async function () {
+  if (marker === null) {
+    return;
+  }
+  const guessLat = marker.getLatLng().lat.toFixed(4);
+  const guessLng = marker.getLatLng().lng.toFixed(4);
+
+  const helloDiv = document.querySelector('.text-center2');
+  if (helloDiv !== null) {
+    helloDiv.textContent = '';
+  }
+
+  const loadingElement = document.getElementById('loading');
+  loadingElement.style.display = 'block'; // Show loading element
+
+  // Use Nominatim API to retrieve the nearest city, country, and capital to the marker
+  const nominatimUrl = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${guessLat}&lon=${guessLng}`;
+  
+  try {
+    const response = await fetch(nominatimUrl);
+    const data = await response.json();
+
+    const guessCity = data.address.city || data.address.town || data.address.village || data.address.hamlet || 'Unknown';
+    const guessCountry = data.address.country || 'Unknown';
+    const guessDistance = Math.round(marker.getLatLng().distanceTo([initialLat, initialLng]));
+    
+    const resultText = [];
+      for (const guessedCity in guessedCities) {
+    const distance = marker.getLatLng().distanceTo(guessedCities[guessedCity].getLatLng());
+    if (distance <= 50000) {
+      alert('You are too close to a previously guessed city. Try another location.');
+      return;
+    }
+  }
+    if (guessDistance < 50000) {
+      endTime = Date.now();
+      const timeTaken = (endTime - startTime) / 1000;
+      playerScore += 10; // Calculate time taken in seconds
+      resultText.push(`<strong>You win! Distance from answer:</strong> ${guessDistance / 1000} kilometers. <strong>Your Guess:</strong> ${guessCity}, ${guessCountry}. `);
+      guessedCities[initialCity] = L.marker(marker.getLatLng()).addTo(map);
+
+      stopTimer();
+
+      resultText.push(`Reload the page to start a new round.`);
+      const playerScoreElement = document.getElementById('player-score');
+      playerScoreElement.textContent = playerScore;
+    }else {
+      resultText.push(`<strong>Distance from answer:</strong> ${guessDistance / 1000} kilometers. <strong>Your Guess:</strong> ${guessCity}, ${guessCountry}.`);
+      if (initialLat.toFixed(4) !== 0.0000 && initialCity !== "" && initialCity !== "Unknown") {
+      } else {
+        // Fix the loop to properly fetch the data for initial coordinates
+        let validInitialCity = false;
+        do {
+          [initialLat, initialLng] = await getRandomLandCoordinates();
+          const nominatimUrlLoop = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${initialLat}&lon=${initialLng}`;
+          try {
+            const response = await fetch(nominatimUrlLoop);
+            const data = await response.json();
+            initialCity = data.address.city || data.address.town || data.address.village || data.address.hamlet || 'Unknown';
+            validInitialCity = initialCity !== "" && initialCity !== "Unknown";
+            initialCountry = data.address.country || 'Unknown';
+
+          } catch (error) {
+            console.error('Error retrieving city, country, and capital for initial coordinates:', error);
+          }
+        } while (!validInitialCity);
+      }
+    }
+
+    // Add latitude and longitude of guess and initial coordinates if checkbox is checked
+    if (showCoordinatesCheckbox.checked) {
+      resultText.push(`<strong>Guess Coordinates:</strong> ${guessLat}, ${guessLng}`);
+      resultText.push(`<strong>Answer Coordinates:</strong> ${initialLat.toFixed(4)}, ${initialLng.toFixed(4)}`);
+    }
+
+    // Remove previous circle if it exists
+    if (circle !== null) {
+      map.removeLayer(circle);
+    }
+
+    // Add new circle at the marker location if the initial city is not "Unknown"
+    if (initialCity !== 'Unknown') {
+      circle= L.circle(marker.getLatLng(), {
+        color: 'red',
+        radius: 1000,
+      }).addTo(map);
+    }
+
+    const resultDiv = document.getElementById('result');
+    resultDiv.innerHTML = resultText.join('<br>');
+
+  } catch (error) {
+    console.error('Error retrieving nearest city, country, and capital:', error);
+  } finally {
+    loadingElement.style.display = 'none'; // Hide loading element
+  }
+
+});
+function sanitizeInput(input) {
+  // Replace '<' with '&lt;' and '&' with '&amp;'
+  return input.replace(/</g, '&lt;').replace(/&/g, '&amp;');
+}
+// Generate random coordinates on land
+async function getRandomLandCoordinates() {
+  const randomCity = citybeforeHyphen
+  const nominatimUrl = `https://nominatim.openstreetmap.org/search?city=${encodeURIComponent(randomCity)}&format=json`;
+  let lat, lng, city, country;
+  try {
+    const response = await fetch(nominatimUrl);
+    const data = await response.json();
+    if (data && data[0]) {
+      lat = parseFloat(data[0].lat);
+      lng = parseFloat(data[0].lon);
+
+      
+    }
+  } catch (error) {
+    console.error('Error retrieving city information for:', randomCity, error);
+  }
+  return [lat, lng];
+}
+// Define a variable to track the visibility state of the high score table
+let highScoresVisible = false;
+
+// Function to toggle the visibility of the high score table
+function toggleHighScores() {
+  const highScoreTable = document.getElementById("score-table");
+  const toggleButton = document.getElementById("toggle-high-scores");
+
+  if (highScoresVisible) {
+    highScoreTable.style.display = "none";
+    toggleButton.textContent = "Show High Scores";
+  } else {
+    highScoreTable.style.display = "block";
+    toggleButton.textContent = "Hide High Scores";
+  }
+
+  // Toggle the visibility state
+  highScoresVisible = !highScoresVisible;
+}
+let mapVisible = false;
+
+function toggleMap() {
+    const map = document.getElementById("map");
+    const toggleButton = document.getElementById("toggle-map");
+
+    if (mapVisible) {
+      map.style.visibility = "hidden";
+      toggleButton.textContent = "Show Map";
+    } else {
+      map.style.visibility = "visible";
+      toggleButton.textContent = "Hide Map";
+    }
+
+    // Toggle the visibility state
+    mapVisible = !mapVisible;
+  }
+  
+  
+
+// Initialize the game when the window finishes loading
+window.addEventListener('load', async function () {
+    await initializeGame();
+    updateHighScoreList(); // Add this line
+  });
+const cityIds = [
+  "paris-1202903123464252",
+
+  "agra-156038159745395",
+  
+  "keystone-768858467067157",
+  
+  "barcelona-987420751796837" ,
+  
+  "beijing-604012977205983",
+  
+  "tokyo-1195388297830542",
+  
+  "berlin-3239772952947894",
+  
+  "moscow-209922360944539",
+  
+  "lucerne-1112576252586784",
+  
+  "pisa-243324604210417",
+  
+  "bangkok-492548511955809",
+  
+  "houston-626149635009294",
+
+  "singapore-2800278286968363",
+
+  "jakarta-383086720385784",
+  
+  "new york-126491143334729",
+
+  "kabul-143431291046379",
+  
+  "banff-162769565655436",
+  
+  "edmonton-276369800814495",
+  
+  "london-557807761891307",
+  
+  "oslo-229430919192635",
+  
+  "calgary-1092582851151417",
+  
+  "rio de janeiro-477309337031051",
+  
+  "hanoi-685942156728923",
+
+  "chicago-513112553151500",
+
+  "dubai-331484938401580",
+
+  "cuzco-279416883907644",
+
+  "new york-533358671467146",
+
+  "amsterdam-838761340319948",
+
+  "las vegas-587347449630786",
+
+  "reykjavik-200688741736661",
+
+  "prague-198071292185889"
+
+];
+
+// Shuffle the city IDs randomly
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+shuffleArray(cityIds);
+
+// Get a random city ID and extract the numbers after "-"
+const streetViewIframe = document.getElementById("streetViewIframe");
+const randomCityId = cityIds[Math.floor(Math.random() * cityIds.length)];
+const citybeforeHyphen = randomCityId.split('-')[0];
+const numbersAfterHyphen = randomCityId.split('-')[1];
+
+var { Viewer } = mapillary;
+
+var viewer = new Viewer({
+  accessToken: "MLY|6567123976742596|e9835e8db194154123b48d4979d5927c",
+  container: "mly",
+  imageId: numbersAfterHyphen,
+});
+
+// Update the iframe source with the extracted numbers
+
+const saveScoreButton = document.getElementById('save-score');
+saveScoreButton.addEventListener('click', async () => {
+  const userNameInput = document.getElementById('user-name');
+  const userName = userNameInput.value;
+  const sanitizedUserName = sanitizeInput(userName); // Sanitize the user's name
+
+  // Check if the user name exceeds 15 characters
+  if (sanitizedUserName && sanitizedUserName.trim() !== '' && sanitizedUserName.length <= 15) {
+    const userScore = playerScore;
+    const currentDate = new Date().toLocaleDateString();
+    const newHighScore = { name: sanitizedUserName, score: userScore, date: currentDate };
+
+    // Save the high score to Firebase
+    db.collection("street_score")
+      .add(newHighScore)
+      .then(function (docRef) {
+        console.log("High score saved with ID: ", docRef.id);
+
+        // Hide the input field and button
+        userNameInput.style.display = 'none';
+        saveScoreButton.style.display = 'none';
+
+        // Show the "Submitted!" message
+        const submittedMessage = document.getElementById('submitted-message');
+        submittedMessage.style.display = 'block';
+
+        // Add the new high score to the leaderboard
+        const highScoreList = document.getElementById('high-score-list');
+        const newListItem = document.createElement('li');
+        newListItem.textContent = `${sanitizedUserName}, Score: ${userScore}, Date: ${currentDate}`;
+        highScoreList.appendChild(newListItem);
+      })
+      .catch(function (error) {
+        console.error("Error adding high score: ", error);
+      });
+  } else {
+    // Display an error message if the user name is too long
+    alert('User name must be 15 characters or less.');
+  }
+});
+
+
+
+/* 
+function startNewGame() {
+    // ...
+    shuffleArray(cityIds);
+
+    // Get a random city ID and extract the numbers after "-"
+    const streetViewIframe = document.getElementById("streetViewIframe");
+    const randomCityId = cityIds[Math.floor(Math.random() * cityIds.length)];
+    const citybeforeHyphen = randomCityId.split('-')[0];
+    const numbersAfterHyphen = randomCityId.split('-')[1];
+    initialCity=citybeforeHyphen
+    var { Viewer } = mapillary;
+    
+    var viewer = new Viewer({
+      accessToken: "MLY|6567123976742596|e9835e8db194154123b48d4979d5927c",
+      container: "mly",
+      imageId: numbersAfterHyphen,
+    });
+    
+  startTime = 0;
+  endTime = 0;
+  stopTimer();
+  tingtong=1
+  const timerElement = document.getElementById('timer');
+  timerElement.textContent = 'Time Elapsed: 0 seconds';
+  for (const guessedCity in guessedCities) {
+    map.removeLayer(guessedCities[guessedCity]);
+  }
+  guessedCities = {};  
+  if (marker !== null) {
+    map.removeLayer(marker);
+    marker = null;
+  }
+  if (circle !== null) {
+    map.removeLayer(circle);
+    circle = null;
+  }
+  // Reset game variables
+  marker = null;
+  circle = null;
+  initialCity = '';
+  initialCountry = '';
+  initialCapital = '';
+  initialLat = 0;
+  initialLng = 0;
+
+
+  window.addEventListener('load', () => {
+    updateHighScoreList();
+  });
+  
+  // Start New Game Function
+
+  // Reset result text
+  const resultDiv = document.getElementById('result');
+  resultDiv.textContent = '';
+
+  // Remove previous marker and circle
+  if (marker !== null) {
+    map.removeLayer(marker);
+    marker = null;
+  }
+  if (circle !== null) {
+    map.removeLayer(circle);
+    circle = null;
+  }
+  const helloDiv = document.querySelector('.text-center2');
+  if (helloDiv !== null) {
+    helloDiv.textContent = 'Guess the place. Walk Around. Click on Show Map to guess.';
+  }
+  
+  // Initialize new game
+  initializeGame();
+
+}
+*/
+
+// Define a function to reset the game and shuffle the Street View location
+async function startNewGame() {
+  // Clear the existing marker and circle
+  if (marker !== null) {
+    map.removeLayer(marker);
+    marker = null;
+  }
+  if (circle !== null) {
+    map.removeLayer(circle);
+    circle = null;
+  }
+
+  // Clear the guessed cities
+  guessedCities = {};
+
+  // Reset game variables
+  playerScore = 0;
+  initialCity = '';
+  initialCountry = '';
+  initialLat = 0;
+  initialLng = 0;
+  startTime = 0;
+  endTime = 0;
+  timerInterval = null;
+
+  // Start a new timer
+  startTimer();
+
+  // Shuffle the Street View location
+  const randomCityId = cityIds[Math.floor(Math.random() * cityIds.length)];
+  const numbersAfterHyphen = randomCityId.split('-')[1];
+  const streetViewUrl = `https://www.mapillary.com/app/?focus=photo&lat=0&lng=0&panos=1&z=1&pKey=${numbersAfterHyphen}`;
+  
+  // Update the Street View iframe source
+  streetViewIframe.src = streetViewUrl;
+
+  // Clear the result text
+  const resultDiv = document.getElementById('result');
+  resultDiv.textContent = '';
+
+  // Enable the "Guess" button
+  guessButton.disabled = false;
+}
+
+
+
+// Add an event listener for the "New Game" button
+
+// Add new game button and text to the HTML
+const newGameButton = document.getElementById('new-game-button');
+newGameButton.addEventListener('click', startNewGame);
+newGameButton.textContent = 'New Game';
+newGameButton.addEventListener('click', startNewGame);
+const textContainer = document.querySelector('.text-container');
+textContainer.insertBefore(newGameButton, textContainer.firstChild);
