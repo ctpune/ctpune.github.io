@@ -6,7 +6,7 @@
 // Initialize the map
 const map = L.map('map').setView([0, 0], 2);
 // Add this line instead
-const tileLayer = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.{ext}', {
+const tileLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
   subdomains: 'abcd',
   minZoom: 0,
   maxZoom: 18,

@@ -5,17 +5,14 @@
 
 // Initialize the map
 const map = L.map('map').setView([0, 0], 2);
-// Add this line instead
-const tileLayer = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.{ext}', {
-  subdomains: 'abcd',
-  minZoom: 0,
+
+const tileLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
   maxZoom: 18,
-  ext: 'png'
 }).addTo(map);
+
 L.control.fullscreen({
   position: 'topright',
   title: 'Toggle Fullscreen'
-
 }).addTo(map);
 
 // Initialize game variables
@@ -215,6 +212,94 @@ function sanitizeInput(input) {
 }
 // Generate random coordinates on land
 async function getRandomLandCoordinates() {
+  
+  const cityIds = [
+    "paris-1202903123464252",
+  
+    "agra-156038159745395",
+    
+    "keystone-768858467067157",
+    
+    "barcelona-987420751796837" ,
+    
+    "beijing-604012977205983",
+    
+    "tokyo-1195388297830542",
+    
+    "berlin-3239772952947894",
+    
+    
+    "lucerne-1112576252586784",
+    
+    "pisa-243324604210417",
+    
+    "bangkok-492548511955809",
+    
+    "houston-626149635009294",
+  
+    "singapore-2800278286968363",
+  
+    "jakarta-383086720385784",
+    
+    "new york-126491143334729",
+  
+    "kabul-143431291046379",
+    
+    "banff-162769565655436",
+    
+    "edmonton-276369800814495",
+    
+    "london-557807761891307",
+    
+    "oslo-229430919192635",
+    
+    "calgary-1092582851151417",
+    
+    "rio de janeiro-477309337031051",
+    
+    "hanoi-685942156728923",
+  
+    "chicago-513112553151500",
+  
+    "dubai-331484938401580",
+  
+    "cuzco-279416883907644",
+  
+    "new york-533358671467146",
+  
+    "amsterdam-838761340319948",
+  
+    "las vegas-587347449630786",
+  
+    "reykjavik-200688741736661",
+  
+    "prague-198071292185889"
+  
+  ];
+  
+  // Shuffle the city IDs randomly
+  function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+      }
+  }
+  shuffleArray(cityIds);
+  
+  // Get a random city ID and extract the numbers after "-"
+  const randomCityId = cityIds[Math.floor(Math.random() * cityIds.length)];
+  const citybeforeHyphen = randomCityId.split('-')[0];
+  const numbersAfterHyphen = randomCityId.split('-')[1];
+  
+  var { Viewer } = mapillary;
+
+  var viewer = new Viewer({
+    accessToken: "MLY|6567123976742596|e9835e8db194154123b48d4979d5927c",
+    container: "mly",
+    imageId: numbersAfterHyphen,
+    sequence: false // Disable arrow overlay
+
+  });
   const randomCity = citybeforeHyphen
   const nominatimUrl = `https://nominatim.openstreetmap.org/search?city=${encodeURIComponent(randomCity)}&format=json`;
   let lat, lng, city, country;
@@ -227,11 +312,13 @@ async function getRandomLandCoordinates() {
 
       
     }
+    
   } catch (error) {
     console.error('Error retrieving city information for:', randomCity, error);
   }
   return [lat, lng];
 }
+
 // Define a variable to track the visibility state of the high score table
 let highScoresVisible = false;
 
@@ -276,96 +363,14 @@ window.addEventListener('load', async function () {
     await initializeGame();
     updateHighScoreList(); // Add this line
   });
-const cityIds = [
-  "paris-1202903123464252",
 
-  "agra-156038159745395",
-  
-  "keystone-768858467067157",
-  
-  "barcelona-987420751796837" ,
-  
-  "beijing-604012977205983",
-  
-  "tokyo-1195388297830542",
-  
-  "berlin-3239772952947894",
-    
-  "lucerne-1112576252586784",
-  
-  "pisa-243324604210417",
-  
-  "bangkok-492548511955809",
-  
-  "houston-626149635009294",
 
-  "singapore-2800278286968363",
 
-  "jakarta-383086720385784",
-  
-  "new york-126491143334729",
-
-  "kabul-143431291046379",
-  
-  "banff-162769565655436",
-  
-  "edmonton-276369800814495",
-  
-  "london-557807761891307",
-  
-  "oslo-229430919192635",
-  
-  "calgary-1092582851151417",
-  
-  "rio de janeiro-477309337031051",
-  
-  "hanoi-685942156728923",
-
-  "chicago-513112553151500",
-
-  "dubai-331484938401580",
-
-  "cuzco-279416883907644",
-
-  "new york-533358671467146",
-
-  "amsterdam-838761340319948",
-
-  "las vegas-587347449630786",
-
-  "reykjavik-200688741736661",
-
-  "prague-198071292185889"
-
-];
-
-// Shuffle the city IDs randomly
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-}
-shuffleArray(cityIds);
-
-// Get a random city ID and extract the numbers after "-"
-const streetViewIframe = document.getElementById("streetViewIframe");
-const randomCityId = cityIds[Math.floor(Math.random() * cityIds.length)];
-const citybeforeHyphen = randomCityId.split('-')[0];
-const numbersAfterHyphen = randomCityId.split('-')[1];
-
-var { Viewer } = mapillary;
-
-var viewer = new Viewer({
-  accessToken: "MLY|6567123976742596|e9835e8db194154123b48d4979d5927c",
-  container: "mly",
-  imageId: numbersAfterHyphen,
-});
-
-// Update the iframe source with the extracted numbers
 
 const saveScoreButton = document.getElementById('save-score');
 saveScoreButton.addEventListener('click', async () => {
+  saveScoreButton.disabled = true;
+
   const userNameInput = document.getElementById('user-name');
   const userName = userNameInput.value;
   const sanitizedUserName = sanitizeInput(userName); // Sanitize the user's name
@@ -407,134 +412,78 @@ saveScoreButton.addEventListener('click', async () => {
 
 
 
-/* 
 function startNewGame() {
-    // ...
-    shuffleArray(cityIds);
+  
 
-    // Get a random city ID and extract the numbers after "-"
-    const streetViewIframe = document.getElementById("streetViewIframe");
-    const randomCityId = cityIds[Math.floor(Math.random() * cityIds.length)];
-    const citybeforeHyphen = randomCityId.split('-')[0];
-    const numbersAfterHyphen = randomCityId.split('-')[1];
-    initialCity=citybeforeHyphen
-    var { Viewer } = mapillary;
-    
-    var viewer = new Viewer({
-      accessToken: "MLY|6567123976742596|e9835e8db194154123b48d4979d5927c",
-      container: "mly",
-      imageId: numbersAfterHyphen,
-    });
-    
-  startTime = 0;
-  endTime = 0;
-  stopTimer();
-  tingtong=1
-  const timerElement = document.getElementById('timer');
-  timerElement.textContent = 'Time Elapsed: 0 seconds';
-  for (const guessedCity in guessedCities) {
-    map.removeLayer(guessedCities[guessedCity]);
-  }
-  guessedCities = {};  
-  if (marker !== null) {
-    map.removeLayer(marker);
-    marker = null;
-  }
-  if (circle !== null) {
-    map.removeLayer(circle);
-    circle = null;
-  }
-  // Reset game variables
+startTime = 0;
+endTime = 0;
+stopTimer();
+tingtong=1
+const timerElement = document.getElementById('timer');
+timerElement.textContent = 'Time Elapsed: 0 seconds';
+for (const guessedCity in guessedCities) {
+  map.removeLayer(guessedCities[guessedCity]);
+}
+guessedCities = {};  
+if (marker !== null) {
+  map.removeLayer(marker);
   marker = null;
+}
+if (circle !== null) {
+  map.removeLayer(circle);
   circle = null;
-  initialCity = '';
-  initialCountry = '';
-  initialCapital = '';
-  initialLat = 0;
-  initialLng = 0;
-
-
-  window.addEventListener('load', () => {
-    updateHighScoreList();
-  });
-  
-  // Start New Game Function
-
-  // Reset result text
-  const resultDiv = document.getElementById('result');
-  resultDiv.textContent = '';
-
-  // Remove previous marker and circle
-  if (marker !== null) {
-    map.removeLayer(marker);
-    marker = null;
-  }
-  if (circle !== null) {
-    map.removeLayer(circle);
-    circle = null;
-  }
-  const helloDiv = document.querySelector('.text-center2');
-  if (helloDiv !== null) {
-    helloDiv.textContent = 'Guess the place. Walk Around. Click on Show Map to guess.';
-  }
-  
-  // Initialize new game
-  initializeGame();
-
 }
-*/
-
-// Define a function to reset the game and shuffle the Street View location
-async function startNewGame() {
-  // Clear the existing marker and circle
-  if (marker !== null) {
-    map.removeLayer(marker);
-    marker = null;
-  }
-  if (circle !== null) {
-    map.removeLayer(circle);
-    circle = null;
-  }
-
-  // Clear the guessed cities
-  guessedCities = {};
-
-  // Reset game variables
-  playerScore = 0;
-  initialCity = '';
-  initialCountry = '';
-  initialLat = 0;
-  initialLng = 0;
-  startTime = 0;
-  endTime = 0;
-  timerInterval = null;
-
-  // Start a new timer
-  startTimer();
-
-  // Shuffle the Street View location
-  const randomCityId = cityIds[Math.floor(Math.random() * cityIds.length)];
-  const numbersAfterHyphen = randomCityId.split('-')[1];
-  const streetViewUrl = `https://www.mapillary.com/app/?focus=photo&lat=0&lng=0&panos=1&z=1&pKey=${numbersAfterHyphen}`;
-  
-  // Update the Street View iframe source
-  streetViewIframe.src = streetViewUrl;
-
-  // Clear the result text
-  const resultDiv = document.getElementById('result');
-  resultDiv.textContent = '';
-
-  // Enable the "Guess" button
-  guessButton.disabled = false;
+var mlyContainer = document.getElementById('mly');
+if (mlyContainer) {
+  mlyContainer.innerHTML = ''; // Remove the content inside the Mapillary container
 }
 
+// ... (existing code)
 
 
-// Add an event listener for the "New Game" button
+
+// Reset game variables
+marker = null;
+circle = null;
+initialCity = '';
+initialCountry = '';
+initialCapital = '';
+initialLat = 0;
+initialLng = 0;
+
+
+window.addEventListener('load', () => {
+  updateHighScoreList();
+});
+
+
+// Reset result text
+const resultDiv = document.getElementById('result');
+resultDiv.textContent = '';
+
+// Remove previous marker and circle
+if (marker !== null) {
+  map.removeLayer(marker);
+  marker = null;
+}
+if (circle !== null) {
+  map.removeLayer(circle);
+  circle = null;
+}
+const helloDiv = document.querySelector('.text-center2');
+if (helloDiv !== null) {
+  helloDiv.textContent = 'Select a point on land and click on Guess to Begin';
+}
+
+// Initialize new game
+initializeGame();
+
+
+}
 
 // Add new game button and text to the HTML
-const newGameButton = document.getElementById('new-game-button');
-newGameButton.addEventListener('click', startNewGame);
+const newGameButton = document.createElement('button');
+newGameButton.id = 'new-game-button';
 newGameButton.textContent = 'New Game';
 newGameButton.addEventListener('click', startNewGame);
 const textContainer = document.querySelector('.text-container');
