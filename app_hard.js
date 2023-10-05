@@ -6,11 +6,10 @@
 // Initialize the map
 const map = L.map('map').setView([0, 0], 2);
 // Add this line instead
-const tileLayer = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain-background/{z}/{x}/{y}.png', {
+const tileLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
   subdomains: 'abcd',
   minZoom: 0,
-  maxZoom: 18,
-  ext: 'png'
+  maxZoom: 18
 }).addTo(map);
 L.control.fullscreen({
   position: 'topright',
