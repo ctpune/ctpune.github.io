@@ -7,13 +7,9 @@
 const map = L.map('map').setView([0, 0], 2);
 
 const tileLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
-  maxZoom: 18,
+  maxZoom: 16,
 }).addTo(map);
 
-L.control.fullscreen({
-  position: 'topright',
-  title: 'Toggle Fullscreen'
-}).addTo(map);
 
 // Initialize game variables
 // Initialize high scores from localStorage or an empty array
@@ -418,6 +414,7 @@ function startNewGame() {
 startTime = 0;
 endTime = 0;
 stopTimer();
+startTimer();
 tingtong=1
 const timerElement = document.getElementById('timer');
 timerElement.textContent = 'Time Elapsed: 0 seconds';
@@ -472,7 +469,6 @@ if (circle !== null) {
 }
 const helloDiv = document.querySelector('.text-center2');
 if (helloDiv !== null) {
-  helloDiv.textContent = 'Select a point on land and click on Guess to Begin';
 }
 
 // Initialize new game
