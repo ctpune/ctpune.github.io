@@ -3,6 +3,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Germania+One&display=swap" rel="stylesheet">
+
     <script src="https://unpkg.com/mapillary-js@4.1.1/dist/mapillary.js"></script>
     <link
       href="https://unpkg.com/mapillary-js@4.1.1/dist/mapillary.css"
@@ -34,100 +37,115 @@
 <style>
   /* Common styles for both PC and mobile */
   body {
-    background: url("b1.jpg");
+    background-color: #f5eecf;
     font-family: "Rockwell", serif;
   }
   
   #map {
     position: fixed;
-    top: 55%;
-    left: 50%;
-        transform: translate(-50%, -50%);
-        width: 98%;
-        background: url('a2.jpg');
-        background-repeat: repeat;
-        border: 10px solid transparent;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        margin: 0 auto;
-
-        font-family: "Rockwell", serif;
-        height: 350px; /* Increased map height */
-        width: 1200px;
+  top: 0;  /* Set top to 0 to cover the top of the page */
+  left: 0;  /* Set left to 0 to cover the left of the page */
+  width: 100%;  /* Set width to 100% to cover the entire width of the page */
+  height: 100%;  /* Set height to 100% to cover the entire height of the page */
+  background: url('a2.jpg');
+  background-repeat: repeat;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  font-family: "Rockwell", serif;
+  z-index: -50;
         visibility: hidden;
-        z-index: 5;
           
 
   }
-  #mly{
+  #mly {
     position: fixed;
-    top: 55%;
-    left: 50%;
-        transform: translate(-50%, -50%);
-        width: 98%;
-        background: url('a2.jpg');
-        background-repeat: repeat;
-        border: 10px solid transparent;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        margin: 0 auto;
-        z-index: 1;
-        font-family: "Rockwell", serif;
-        height: 350px; /* Increased map height */
-        width: 1200px;
-          
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 103%;
+    background: url('a2.jpg');
+    background-repeat: repeat;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    font-family: "Rockwell", serif;
+    z-index: -99;
+}
 
-  }
-  .text-center2 {
+.text-center2 {
     position: fixed;
-    top: 15%;
-    text-align: center;
-
-
+    color: #ccc; /* Set the text color to white */
+    top: 80%;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
+  left: 1%;
   right: 0;
-
     font-size: 19px;
     font-family: "Rockwell", serif;
   }
   
   .text-center {
     position: fixed;
-    top: 88%;
-    left: 15%;
+    display: flex; /* Use flexbox */
+    justify-content: flex-start; /* Align to the left */
+    align-items: flex-end; /* Align to the bottom */
+    bottom: 0; /* Ensure it stays at the bottom */
+    left: 0; /* Ensure it stays at the left */
     text-align: center;
     font-size: 19px;
     font-family: "Rockwell", serif;
-  }
+}
+
   
   .text-center3 {
     position: fixed;
-    top: 92%;
-    left: 65%;
-    text-align: center;
+    top: 84%;
+    right: 135px;
     font-size: 19px;
     font-family: "Rockwell", serif;
-  }
-  
-  .button {
-    position: fixed;
+    color: #000000;
+    text-align: center; /* Center the text vertically */
 
-    display: inline-block;
-    padding: 12px;
-    font-size: 19px;
-    color: rgb(236, 236, 236);
-    background-color: rgb(142, 97, 0);
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    margin: 10px;
-    width: 550px;
-    height: 50px;
-    background: url('a2.jpg');
-    font-family: "Rockwell", serif;
   }
-  
+  .custom-button {
+  font-size: 30px;
+  font-family: 'Germania One', cursive; /* Use Germania One font */
+  display: inline-flex;
+  justify-content: center; /* Center the text horizontally */
+  align-items: center; /* Center the text vertically */
+  padding: 10px 20px;
+  background-color: #FFC30B;
+  color: #000000; /* Black text color */
+  text-decoration: none;
+  font-weight: bold;
+  border: 2px solid #000000; /* Black border */
+  border-radius: 5px;
+  height: 50px;
+}
+
+
+.custom-button:hover {
+  background-color: #000000; /* Black background on hover */
+  color: #FFC30B; /* Yellow text color on hover */
+  border: 2px solid #FFC30B; /* Yellow border on hover */
+}
+
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #FFC30B;
+  color: #000000; /* Black text color */
+  text-decoration: none;
+  font-weight: bold;
+  border: 2px solid #000000; /* Black border */
+  border-radius: 5px;
+  font-family: "Rockwell", serif;
+}
+
+.button:hover {
+  background-color: #000000; /* Black background on hover */
+  color: #FFC30B; /* Yellow text color on hover */
+  border: 2px solid #FFC30B; /* Yellow border on hover */
+}
+
+
   h1 {
     position: fixed;
 
@@ -158,9 +176,11 @@
   
   #result {
     position: fixed;
-    top: 8%;
+    top: 20%;
+    left: 1.8%;
     font-size: 18px;
     font-family: "Rockwell", serif;
+    color: #FFC30B;
   }
   
   #loading::after {
@@ -197,56 +217,105 @@
   #new-game-button {
     position: fixed;
 
-    color: rgb(255, 255, 255);
+    color: rgb(1, 0, 0);
     font-size: 12px;
     text-align: center;
     width: 100px;
     height: 30px;
-    background: url("a2.jpg");
-    top: 50px;
+    background-color: #FFC30B;
+    top: 18px;
     font-family: "Rockwell", serif;
     right: 185px;
+    border-radius: 5px;
   }
+
+  #new-game-button:hover {
+  background-color: #000000; /* Black background on hover */
+  color: #FFC30B; /* Yellow text color on hover */
+  border: 2px solid #FFC30B; /* Yellow border on hover */
+}
   #toggle-high-scores {
-    position: fixed;
-
-    color: rgb(255, 255, 255);
-    font-size: 11px;
-    text-align: center;
-    width: 100px;
-    height: 30px;
-    background: url("a2.jpg");
-    top: 90px;
-    font-family: "Rockwell", serif;
-    right: 185px;
+  position: fixed;
+  color: rgb(1, 0, 0);
+  font-size: 11px;
+  text-align: center;
+  width: 100px;
+  height: 30px;
+  background-color: #FFC30B;
+  top: 51px;
+  font-family: "Rockwell", serif;
+  right: 185px;
+  border-radius: 5px;
 }
+
+#toggle-high-scores:hover {
+  background-color: #000000; /* Black background on hover */
+  color: #FFC30B; /* Yellow text color on hover */
+  border: 2px solid #FFC30B; /* Yellow border on hover */
+}
+
 #toggle-map {
-    position: fixed;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Change from align-items: flex-end to align-items: center */
+  font-size: 19px;
+  font-family: "Rockwell", serif;
+  width: 250px;
+  height: 50px;
+  color: rgb(1, 0, 0);
+  text-align: center;
+  background-color: #FFC30B;
+  bottom: 10px;
+  left: 10px;
+  border-radius: 5px;
 
-    color: rgb(255, 255, 255);
-    font-size: 12px;
-    text-align: center;
-    width: 160px;
-    height: 30px;
-    background: url("a2.jpg");
-    top: 90px;
-    font-family: "Rockwell", serif;
-    right: 20px;
+  z-index: 40;
 }
+#toggle-map:hover {
+  background-color: #000000; /* Black background on hover */
+  color: #FFC30B; /* Yellow text color on hover */
+  border: 2px solid #FFC30B; /* Yellow border on hover */
+}
+#guess-button{
+  position: fixed;
+  display: flex;
+  justify-content: center; /* Center the content horizontally */
+  align-items: flex-end; /* Align to the bottom */
+  font-size: 19px;
+  font-family: "Rockwell", serif;
+  width: 250px;
+  height: 50px;
+  color: rgb(1, 0, 0);
+  text-align: center;
+  background-color: #FFC30B;
+  font-family: "Rockwell", serif;
+  bottom: 10px; /* Adjust the distance from the bottom as needed */
+  right: 10px; /* Adjust the distance from the left as needed */
+  z-index: 40;
+
+}
+#guess-button:hover {
+  background-color: #000000; /* Black background on hover */
+  color: #FFC30B; /* Yellow text color on hover */
+  border: 2px solid #FFC30B; /* Yellow border on hover */
+}
+
       #timer {
-        color: rgb(255, 255, 255);
+        color: rgb(1, 0, 0);
         font-size: px;
         text-align: center;
         width: 150px;
         height: 50px;
-        background-color: rgba(174, 42, 42, 0.8);
         position: absolute;
         top: 2px;
         right: 20px;
         padding: 5px;
         font-family: "Rockwell", serif;
+        border: 2px solid black;
+        border-radius: 5px;
 
-        background: url("a2.jpg");
+        background-color: #FFC30B;
       }
       .logo {
   position: fixed;
@@ -257,7 +326,7 @@
   margin-left: auto;
   margin-right: auto;
   left: 0;
-  right: 0;
+  right: 10;
 }
 .logolink {
   width: 190px;
@@ -277,7 +346,54 @@
   z-index: 2000; /* Ensure it appears over the map */
   display: none; /* Initially hide the high score table */
 }
-#score{    font-size: 30px;
+
+.yellow-border {
+  text-shadow: -0.5px -0.5px 0 #FFC30B, 0.5px -0.5px 0 #FFC30B, -0.5px 0.5px 0 #FFC30B, 0.5px 0.5px 0 #FFC30B;
+}
+
+.yellow-border2 {
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+#score {
+  position: absolute;
+  width: 190px;
+  height: 60px;
+  margin-top: 140px;
+  left: 10px;
+  font-size: 30px;
+  color: rgb(1, 0, 0);
+  font-family: "Rockwell", serif;
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: #FFC30B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 60px; /* Adjust the line-height to vertically center the text */
+}
+
+
+#player-score {
+  #score {
+  position: absolute;
+  width: 190px;
+  height: 60px;
+  top: 100px;
+  left: 10px;
+  font-size: 30px;
+  color: rgb(1, 0, 0);
+  font-family: "Rockwell", serif;
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: #FFC30B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 60px; /* Adjust the line-height to vertically center the text */
+}
 
 }
 #fullscreen-button {
@@ -316,259 +432,121 @@
 
       /* Styles for mobile phones */
       @media only screen and (min-width: 300px) and (max-width: 980px) {
-        #score-table {
+        #result{  font-size: 40px;
+          top: 450px;
 
-  display: none; /* Initially hide the high score table */
 }
-        .logo {
-  position: fixed;
-  top: -65px;
-  width: 220px;
-  height: 210px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
+        
+        #score {
+          font-size: 60px;
+  width: 300px;
+  height: 80px;
+
 }
-.logolink {
-  width: 230px;
-  height: 220px;
+.custom-button{  width: 300px;
+  height: 80px;
+  font-size: 60px;
+}
+#toggle-map{width: 300px;
+  height: 180px;
+  font-size: 60px;}
+      
+#guess-button{width: 300px;
+  height: 180px;
+  font-size: 60px;}
+/* Hide the default checkbox */
+#show-coordinates {
+  display: none;
+}
+#timer{
+  top: -40px;
+  width: 300px;
+  height: 180px;
+  font-size: 50px;}
+  #new-game-button{width: 315px;
+  height: 80px;
+  font-size: 40px;
+top: 212px;
+right:20px;}
+#toggle-high-scores{width: 315px;
+  height: 80px;
+  font-size: 40px;
+top: 300px;
+right:20px;}
+
+#show-coordinates + label::before {
+  display: none;
+
+}
+#show-coordinates {
+  display: none;
+}
+#show-coordinates + label {
+  display: none;
+
+
+}
+.text-center2{  
+  display: none;
+}
+}
+/* Create a custom checkbox style */
+#show-coordinates + label::before {
+  content: "Show Coordinates"; /* Replace with the text you want to display */
+  display: inline-block;
+  width: 180px;
+  height: 20px;
+  background-color: #ffffff; /* Change the background color to your preferred color */
+  border: 2px solid #1565C0; /* Change the border color to your preferred color */
+  border-radius: 3px;
+  margin-right: -60px;
+  vertical-align: middle;
   cursor: pointer;
 }
-
-  #toggle-high-scores{
-        color: rgb(255, 255, 255);
-        font-size: 30px;
-        padding: 5px;
-
-        text-align: center;
-        width: 230px;
-        height: 80px;
-        background: url("a2.jpg");
-        position: absolute;
-        top: 30px;
-        right: 40px;
-      }
-      #toggle-map {
-        color: rgb(255, 255, 255);
-        font-size: 30px;
-        padding: 5px;
-
-        text-align: center;
-        width: 230px;
-        height: 80px;
-        background: url("a2.jpg");
-        position: absolute;
-        top: 120px;
-        right: 40px;
+#show-coordinates {
+  display: none;
 }
-  #score {
-  font-size: 50px;
-  text-align: center;
-  position: fixed;
-  top: 8%; 
-  left: 50%; 
-  transform: translate(-50%, -50%); 
-}
-        .text-center {
-          font-size: 60px; /* Increased font size */
-          text-align: center;
-        left: 20%;
-        top: 80%;
-        }
-        .text-center2 {
-          font-size: 35px; /* Increased font size */
-          text-align: center;
-            
-        }
-        .text-center3 {
-          display: none
-        }
-
-            #map {
-
-          
-
-
-
-
-
-  position: fixed;
-  top: 52%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 98%;
-        background: url('a2.jpg');
-        background-repeat: repeat;
-        border: 10px solid transparent;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        margin: 0 auto;
-
-        font-family: "Rockwell", serif;
-        height: 900px;
-        visibility: hidden;
-        z-index: 5;
-        }
-        #mly{    top: 52%;
-        left: 50%;      height: 900px; width: 950px;
-}
-        #loading {
-        display: none;
-        position: fixed;
-        top: 15%;
-        left: 22%;
-        transform: translate(-50%, -50%);
-        z-index: 9999;
-        text-align: center;
-        font-size: 32px;
-        font-family: "Rockwell", serif;
-
-      }
-      #loading::after {
-        content: '';
-        display: block;
-        position: absolute;
-        top: calc(50% - 30px);
-        left: calc(50% + 194px);
-        transform: translate(-50%, -50%);
-        width: 40px;
-        height: 40px;
-        margin-left: 8px;
-        border-radius: 50%;
-        border: 4px solid #ccc;
-        border-color: #a15d0a transparent #a15d0a transparent;
-        animation: loading 1.2s linear infinite;
-      }
-      #timer {
-        color: rgb(255, 255, 255);
-        font-size: 40px;
-        text-align: center;
-        width: 260px;
-        height: 160px;
-        background-color: rgba(174, 42, 42, 0.8);
-        position: absolute;
-        right: 680px;
-        top: -7px;
-        padding: 5px;
-        background: url("a2.jpg");
-        font-family: "Rockwell", serif;
-
-      }
-      #new-game-button {
-        color: rgb(255, 255, 255);
-        font-size: 40px;
-        padding: 5px;
-
-        text-align: center;
-        width: 230px;
-        height: 80px;
-        background: url("a2.jpg");
-        position: absolute;
-        top: 30px;
-        right: 40px;
-      }
-
-      #result {
-        position: fixed;
-        top: 18%;
-        font-size: 35px;
-      }
-      .button {
-        display: inline-block;
-        padding: 12px;
-        font-size: 50px;
-        color: rgb(236, 236, 236);
-        background-color: rgb(142, 97, 0);
-        text-align: center;
-        text-decoration: none;
-        cursor: pointer;
-        margin: 10px;
-        width: 600px;
-        height: 200px;
-        background: url('a2.jpg');
-
-      }
-      #fullscreen-button {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      z-index: 1000;
-    }
-        #back-button {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      z-index: 1000;
-    }
-    #score-table {
-  position: fixed;
-  font-size: 30px; /* Increase the font size for leaderboard entries */
-
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  background-image: url('abchs.jpg'); /* Background image URL */
-  background-size: cover; /* Adjusts the background image size */
-  padding: 20px;
-  
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  z-index: 2000; /* Ensure it appears over the map */
-  display: none; /* Initially hide the high score table */
-}
-#high-score-list{
-  font-size: 30px;
-  text-align: left;
-
-}
-#submitted-message{
-  font-size: 30px;
-
-}
-#save-score {
-  color: rgb(255, 255, 255);
-  font-size: 30px;
-  text-align: center;
-  background: url("a2.jpg");
-  display: block;
-  margin: 0 auto;
-  padding: 10px 20px;
-  width: fit-content; /* This sets the width of the button to fit its content */
-}
-#user-name {
-  display: block;
-  margin: 10px auto; /* Add margin to create space */
-  padding: 10px;
-  font-size: 30px;
-  text-align: center;
+/* Define the checked state of the custom checkbox */
+#show-coordinates:checked + label::before {
+  background-color: #FFC30B; /* Change the background color for the checked state */
 }
 
-      }
+/* Style the label text next to the custom checkbox */
+#show-coordinates + label {
+  vertical-align: middle;
+  cursor: pointer;
+
+}
+
+#germania{
+  font-family: 'Germania One', cursive;
 
 
+}
 
     </style>
 </head>
 <body>
 
-    <a href="index.html" target="_blank" class="logo-link">
-        <img src="mm1.png" alt="Go to https://chetantyagi.me/" class="logo" />
-      </a>
+  <a href="index.html" class="custom-button">Map Master</a>
+
   <div id="loading">Loading the coordinates...</div>
   <p id="timer">Time Elapsed:<br> 0 seconds</p>
-  <div id="result"></div>
+  <div class="yellow-border2" id="result"></div>
   <div class="text-center2">Click on Show Map to Guess the City</div>
   <div class="text-center3">
     <input type="checkbox" id="show-coordinates">
-    <label for="show-coordinates">Show Coordinates</label>
+    <label for="show-coordinates"></label>
+    
   </div>
-  <div class="text-center">
-    <button id="guess-button" class="button">Guess City</button>
-  </div>
+
  <!-- <button id="new-game-button" onclick="startNewGame()">New Game</button>-->
  <button id="new-game-button" onclick="startNewGame()">New Game</button>
  <button id="toggle-high-scores" onclick="toggleHighScores()">High Scores</button>
-  <button id="toggle-map" onclick="toggleMap()">Show Map</button>
+ <div class="button-container">
+  <button id="toggle-map" onclick="toggleMap()"><b>Show Map</b></button>
+  <button id="guess-button" class="button">Guess City</button>
+</div>
   <div id="map">
     <!-- Your map content goes here -->
 
@@ -586,9 +564,8 @@
   </div>
   
   
-  
   <div id="score">
-    <strong>Score:</strong> <span id="player-score">0</span>
+      <strong>Score:</strong> <span id="player-score">0</span>
   </div>
   <div id="mly" ></div>
 
