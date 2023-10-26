@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+          
+
+    <!-- Your styles go here -->
+    <style>
+        /* Apply the background color to the entire body */
+        body {
+            background-color: #faf6ea;
+            font-family: "Rockwell", serif;
+            margin-left: 200px; /* Add margin here */
+            margin-right: 120px; /* Add margin here */
+            margin-top: 40px; /* Add margin here */
+        }
+
+        .custom-button {
+            font-size: 30px;
+            
+            font-family: 'Rockwell', cursive;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #FFC30B;
+            color: #000000;
+            text-decoration: none;
+            font-weight: bold;
+            border: 2px solid #000000;
+            border-radius: 5px;
+            width:100%;
+            height: 50px;
+            
+            cursor: pointer; /* Add cursor pointer to indicate interactivity */
+        }
+
+        .custom-button:hover {
+            background-color: #000000;
+            color: #FFC30B;
+            border: 2px solid #FFC30B;
+        }
+        .custom-button3 {
+            font-size: 30px;
+            
+            font-family: 'Rockwell', cursive;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #FFC30B;
+            color: #000000;
+            text-decoration: none;
+            font-weight: bold;
+            border: 2px solid #000000;
+            border-radius: 5px;
+            width:50%;
+            height: 50px;
+            
+            cursor: pointer; /* Add cursor pointer to indicate interactivity */
+        }
+
+        .custom-button3:hover {
+            background-color: #000000;
+            color: #FFC30B;
+            border: 2px solid #FFC30B;
+        }
+.custom-button2 {
+    font-size: 20px;
+    display: flex;
+    height: 50px;
+    width: 150px;
+    background-color: #FFC30B;
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid #000000;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+.custom-button2:hover {
+            background-color: #000000;
+            color: #FFC30B;
+            border: 2px solid #FFC30B;
+        }
+
+
+        .custom-button4 {
+    font-size: 20px;
+    display: flex;
+    height: 50px;
+    width: 50px;
+    background-color: #FFC30B;
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid #000000;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+.custom-button4:hover {
+            background-color: #000000;
+            color: #FFC30B;
+            border: 2px solid #FFC30B;
+        }
+
+        /* Style the navigation menu */
+        #menu {
+            position: fixed; /* Make the menu stay fixed */
+            top: 20; /* Stick to the top of the viewport */
+            left: 10px; /* Stick to the left side of the viewport */
+            width: 120px; /* Set the width of the menu */
+            height: 440px; /* Make the menu cover the entire height of the viewport */
+            background-color: #FFC30B; /* Set the background color */
+            color: #000000; /* Set the text color */
+            padding: 20px; /* Add some padding for spacing */
+            border: 2px solid #000000; /* Black border */
+            border-radius: 5px;
+        }
+
+/* Style the navigation links */
+#menu ul {
+    list-style: none;
+    padding: 0px;
+}
+
+#menu li {
+    margin-bottom: 20px; /* Add spacing between menu items */
+}
+
+#menu a {
+    font-size: 20px;
+    justify-content: center; /* Center the text horizontally */
+    align-items: center; /* Center the text vertically */
+
+}
+
+#menu a:hover {
+    background-color: #000000;
+    color: #FFC30B;
+    border-radius: 5px;
+}
+
+.skill-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Adjust the gap as needed */
+}
+
+.skill-box {
+    border: 2px solid #000000; /* Black border */
+            border-radius: 5px;
+                padding: 20px; /* Add padding to the boxes for spacing */
+    margin: 10px; /* Add margin for spacing between boxes */
+}
+
+.skill-icon {
+    display: flex;
+    align-items: center;
+}
+
+.skill-icon i {
+    font-size:30px; /* Adjust the size as needed */
+    margin-right: 10px; /* Adjust the margin as needed */
+    
+}
+
+.skill-icon p {
+    margin: 10px;
+
+}
+section {
+    padding: 20px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    margin: 10px; /* Add margin for spacing between sections */
+}
+.project-box {
+    padding: 20px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.project {
+    list-style-type: none; /* Remove bullet marks */
+}
+
+.project h3 {
+    font-weight: bold;
+}
+
+.project a {
+    text-decoration: none;
+    color: #0070e0;
+}
+
+.project a:hover {
+    text-decoration: underline;
+}
+/* Style the modal */
+/* CSS for the modal */
+.modal-box {
+    padding: 20px;
+    background-color: #FFC30B;
+    border: 2px solid #000;
+    border-radius: 5px;
+    margin: 10px;
+    z-index: 1; /* Set z-index to a lower value */
+}
+
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 16%;
+    left: 60%;
+    z-index: 2;
+}
+
+.modal img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.image-border {
+    border: 2px solid #000;
+    border-radius: 5px;
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+    </style>
+</head>
+<body>
+    <nav id="menu">
+        <ul>
+            <li><a class="custom-button2" href="#about"> About Me</a></li>
+            <li><a class="custom-button2" href="#experience">Experience</a></li>
+            <li><a class="custom-button2" href="#education">Education</a></li>
+            <li><a class="custom-button2" href="#skills">Skills</a></li>
+            <li><a class="custom-button2" href="#achievements">Achievements</a></li>
+            <li><a class="custom-button2" href="#projects">Projects</a></li>
+
+
+        </ul>
+    </nav>
+<!-- Header Section -->
+
+<script>
+    let buttonColor = 0; // 0 for initial colors, 1 for swapped colors
+    let fontReversed = false;
+
+    function toggleButtonColor() {
+        const body = document.body;
+        const button = document.getElementById("mapMasterButton");
+
+        if (buttonColor === 0) {
+            // Change to swapped colors and reverse the font
+            body.style.backgroundColor = "#000000";
+            body.style.color = "#FFC30B";
+            button.style.backgroundColor = "#FFC30B";
+            button.style.color = "#000000";
+            fontReversed = true;
+            buttonColor = 1;
+        } else {
+            // Change back to initial colors and restore the font
+            body.style.backgroundColor = "#faf6ea";
+            body.style.color = "#000000";
+            button.style.backgroundColor = "#FFC30B";
+            button.style.color = "#000000";
+            fontReversed = false;
+            buttonColor = 0;
+        }
+
+        // Toggle the font style
+
+    }
+
+    let photoVisible = false; // Initialize a flag to track if the photo is visible
+
+    function showRandomPhoto() {
+    const randomPhotoContainer = document.getElementById("randomPhotoContainer");
+
+    if (!photoVisible) {
+        // If the photo is not visible, show a random image
+
+        // Create a modal div to center the content
+        const modal = document.createElement("div");
+        modal.className = "modal";
+
+        // Create a modal-box div for styling
+        const modalBox = document.createElement("div");
+        modalBox.className = "modal-box";
+
+        // Create a flex container for the images and text
+        const contentContainer = document.createElement("div");
+        contentContainer.style.display = "flex";
+        contentContainer.style.alignItems = "center";
+
+        // Create the first (larger) image element
+        const randomPhoto = document.createElement("img");
+        randomPhoto.src = "sask.jpg"; // Replace with your image source
+        randomPhoto.alt = "Random Photo";
+        randomPhoto.className = "image-border"; // Add a class for the image border
+
+        // Make the first image smaller (adjust the width and height as needed)
+        randomPhoto.style.width = "230px";
+        randomPhoto.style.height = "300px";
+
+        // Create a second flex container for the small image and text
+        const secondContainer = document.createElement("div");
+        secondContainer.style.display = "flex";
+        secondContainer.style.flexDirection = "column";
+        secondContainer.style.marginLeft = "40px"; // Adjust the margin as needed to move the small image to the right
+
+        // Create the second (smaller) image element
+        const smallPhoto = document.createElement("img");
+        smallPhoto.src = "edm.png"; // Replace with your second image source
+        smallPhoto.alt = "Small Photo";
+        smallPhoto.className = "image-border"; // Add a class for the image border
+
+        // Make the second image smaller (adjust the width and height as needed)
+        smallPhoto.style.width = "200px";
+        smallPhoto.style.height = "140px";
+
+        // Create a paragraph for the text
+        const textParagraph = document.createElement("p");
+        textParagraph.textContent = "Here's a photo of me near the North Saskatchewan River, close to the University Campus.";
+        textParagraph.style.textAlign = "center";
+
+        // Add an event listener to close the modal when clicking the image
+        randomPhoto.addEventListener("click", function() {
+            modal.style.display = "none";
+            photoVisible = false;
+        });
+
+        // Add the first image and text elements to the content container
+        contentContainer.appendChild(randomPhoto);
+
+        // Add the second image and text elements to the second container
+        secondContainer.appendChild(smallPhoto);
+        secondContainer.appendChild(textParagraph);
+
+        // Add both containers to the content container
+        contentContainer.appendChild(secondContainer);
+
+        // Add the content container to the modal-box
+        modalBox.appendChild(contentContainer);
+
+        // Add the modal-box element as a child of the modal
+        modal.appendChild(modalBox);
+
+        // Add the modal to the randomPhotoContainer
+        randomPhotoContainer.appendChild(modal);
+
+        // Set the flag to indicate the photo is visible
+        photoVisible = true;
+    } else {
+        // If the photo is already visible, hide it
+        randomPhotoContainer.innerHTML = "";
+        photoVisible = false;
+    }
+}
+
+
+</script>
+
+
+<header style="display: flex; align-items: center;">
+    <button id="mapMasterButton" class="custom-button" onclick="toggleButtonColor()">Welcome to my Portfolio</button>
+    <div id="randomPhotoContainer" style="width: 30px; height: 10px;"></div>
+</header>
+<header>
+    <div style="display: flex; align-items: center;margin-top: 10px">
+        <button class="custom-button3" onclick="showRandomPhoto()">Chetan Tyagi</button>
+        <a href="https://www.linkedin.com/in/chetantyagi06/" target="_blank" style="text-decoration: none;margin-left: 300px;">
+            <button class="custom-button4">
+                <i class="devicon-linkedin-plain" style="font-size: 40px;"></i>
+            </button>
+        </a>
+        <a href="https://github.com/chetanty" target="_blank" style="text-decoration: none; margin-left: 10px;">
+            <button class="custom-button4">
+                <i class="devicon-github-plain" style="font-size: 40px;"></i>
+            </button>
+        </a>
+    </div>
+</header>
+
+    
+
+<!-- Main Content Section -->
+<section id="about">
+    <h2>About Me</h2>
+    <p>
+        I am Chetan Tyagi, an international student currently studying at the University of Alberta, Edmonton. Currently, I'm enrolled in my second year of computer science.
+    </p>
+    <p>
+        I always love to spend my free time learning new skills in the field of Computer Science. For a few months now, this has been Cloud Computing in Microsoft Azure. I am an avid follower of tech news and spend a large amount of my time exploring the latest technology advancements in the software development world.
+    </p>
+    <p>Apart from coding, my hobbies include traveling and working out. Along with this, I also like playing chess. I have been playing chess since I was in school and is the best hobby I think I am truly proud of.</p>
+    <p class="mb-5">Feel free to reach out to me through the contact details below:</p>
+    <p>Email: ctyagy06@gmail.com</p>
+    <p>Phone: +1 (780) 729-7849</p>
+</section>
+
+<!-- Contact Section -->
+<section id="experience">
+    <h2>Experience</h2>
+    <ul>
+        <li>
+            <strong>Teaching Assistant for CMPUT 174 and CMPUT 101</strong>
+            <p>Computing Science Department, University of Alberta</p>
+            <p>May 2023 - Present</p>
+            <p>Aid the lead teacher by answering student’s questions, assisting students with projects and other assignments.</p>
+        </li>
+        <li>
+            <strong>Open Source Developer</strong>
+            <p>Zulip</p>
+            <p>August 2022 - November 2022</p>
+            <p>I kept documentation easy to read and updated using Github and Python.</p>
+        </li>
+        <li>
+            <strong>Strategy Development Intern:</strong>
+            <p>Jankalyan Multipurpose Education Society</p>
+            <p>July 2022 - August 2022</p>
+            <p>My team analyzed previous reports to devise a strategy to obtain more funds for education for children from weak economic backgrounds.</p>
+        </li>
+    </ul>
+</section>
+
+<!-- Education Section -->
+<section id="education">
+    <h2>Education</h2>
+    <ul>
+        <li>
+            <strong>University of Alberta, Canada</strong>
+            <p>Bachelor of Science</p>
+            <p>Computer Science</p>
+            <p>September 2022 - September 2026</p>
+        </li>
+        <li>
+            <strong>JSPM's Blossom Public School (New), India</strong>
+            <p>High School</p>
+            <p>CBSE Board</p>
+            <p>May 2020 - June 2022</p>
+        </li>
+    </ul>
+</section>
+
+
+
+<section id="skills">
+    <h2>Skills</h2>
+    <div class="skill-icons">
+        <div class="skill-box">
+            <h2 >Languages</h2>
+            <div class="skill-icon">
+                <i class="devicon-python-plain colored"></i>
+                <p>Python</p>
+            </div>
+
+            <div class="skill-icon">
+                <i class="devicon-html5-plain colored"></i>
+                <p>HTML</p>
+            </div>
+            <div class="skill-icon">
+                <i class="devicon-css3-plain colored"></i>
+                <p>CSS</p>
+            </div>
+            <div class="skill-icon">
+                <i class="devicon-javascript-plain colored"></i>
+                <p>JavaScript</p>
+            </div>
+            <div class="skill-icon">
+                <i class="devicon-c-plain colored"></i>
+                <p>C</p>
+            </div>
+            <div class="skill-icon">
+                <i class="devicon-java-plain colored"></i>
+                <p>Java</p>
+            </div>
+
+            <div class="skill-icon">
+                <i class="devicon-r-plain colored"></i>
+                <p>R</p>
+            </div>
+            <div class="skill-icon">
+                <i class="devicon-flutter-plain colored"></i>
+                <p>Flutter</p>
+            </div>
+        </div>
+        <div class="skill-box">
+            <h2 >Tools and Frameworks</h2>
+
+            <div class="skill-icon">
+                <i class="devicon-blender-original colored"></i>
+                <p>Blender</p>
+            </div>
+            <div class="skill-icon">
+                <i class="devicon-mysql-plain colored"></i>
+                <p>MySQL</p>
+            </div>
+            <div class="skill-icon">
+                <i class="devicon-github-plain colored"></i>
+                <p>GitHub</p>
+            </div>
+            <div class="skill-icon">
+                <i class="devicon-androidstudio-plain colored"></i>
+                <p>Android Studio</p>
+            </div>
+            <div class="skill-icon">
+                <i class="devicon-firebase-plain colored"></i>
+                <p>Firebase</p>
+            </div>
+            <div class="skill-icon">
+                <i class="devicon-azure-plain colored"></i>
+                <p>Azure</p>
+            </div>
+
+            <div class="skill-icon">
+                <i class="devicon-figma-plain colored"></i>
+                <p>Figma</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="achievements">
+    <h2>Achievements and Certifications</h2>
+    <ul>
+        <li>Google Data Analytics Certified Developer</li>
+        <li>Microsoft Certified: Azure Fundamentals</li>
+        <li>Events Lead at Google Developers Student Club of University of Alberta</li>
+        <li>Winner in Give Back Hacks 3 Hackathon by MLH for my submission "Cozi”</li>
+        <li>State Level Chess player in Maharashtra, India</li>
+        <li>Completed CS50's Introduction to Artificial Intelligence</li>
+        <li>3rd Place in Silverzone International Informatics Olympiad</li>
+        <li>Winner in MecSemCalc Hackathon for my Application “Javelin Power Saver”</li>
+    </ul>
+</section>
+
+
+<section id="projects">
+    <h2>PROJECTS</h2>
+    <div class="project-box">
+        <div class="project">
+            <h3><strong>Map Master</strong></h3>
+            <a href="https://chetantyagi.me/">Demo</a>
+            <p><strong>Made by Chetan Tyagi</strong></p>
+            <p>Aimed to enrich geography and education by developing a game where players have to find cities on the map. Implemented HTML, CSS, JavaScript, Leaflet, and OpenStreetMap API to create an interactive and engaging gaming experience.</p>
+            <p><strong>August 2023-Present</strong></p>
+        </div>
+    </div>
+    <div class="project-box">
+        <div class="project">
+            <h3><strong>Cosmic - A Marketplace for Open Science</strong></h3>
+            <a href="https://github.com/chetanty/cosmic">Source Code</a>
+            <p><strong>Made by Chetan Tyagi, Harkeerat Singh and David Pham</strong></p>
+            <p>Worked in a team to create a portal which connects aspiring project developers with open science organizations. This was made as a part of NASA Space Apps Challenge 2023.</p>
+            <p>Implemented Django, HTML, and CSS with SQLite3 for a great user experience and more features.</p>
+            <p><strong>October 2023</strong></p>
+        </div>
+    </div>
+    <div class="project-box">
+        <div class="project">
+            <h3><strong>Cozi</strong></h3>
+            <a href="https://chetanty.github.io/cozi/">Demo</a><br>
+            <a href="https://github.com/chetanty/cozi">Source Code</a>
+            <p><strong>Made by Chetan Tyagi</strong></p>
+            <p>This project was the winner of Give Back Hacks 3.0, organized by MLH. Using OpenWeather API and Google Maps Embed API, this app was created for two major objectives. The first is to recommend the ideal clothes to wear based on the temperature outside. The other is to tackle the problem of homelessness by including warm clothes donation centers and shelters, which the needy could get utilize for their purpose.</p>
+            <p><strong>November 2022</strong></p>
+        </div>
+    </div>
+    <div class="project-box">
+        <div class="project">
+            <h3><strong>Cabin Passenger</strong></h3>
+            <a href="https://github.com/chetanty/CabinPassenger">Source Code</a>
+            <p><strong>Made by Chetan Tyagi</strong></p>
+            <p>This application, named Cabin Passenger aims to solve the problem of the inability to imagine the past. Cabin Passenger uses the recently released DALL-E API, along with a user-friendly text-based program for the best results. The app will obtain inputs of a country and a specific year to provide how life was in the era. This can provide a whole new perspective on how people see history.</p>
+            <p><strong>November 2022</strong></p>
+        </div>
+    </div>
+    <div class="project-box">
+        <div class="project">
+            <h3><strong>GreenScore</strong></h3>
+            <a href="https://chetanty.github.io/TheGreenScore/">Demo</a><br>
+            <a href="https://github.com/chetanty/TheGreenScore">Source Code</a>
+            <p><strong>Made by Chetan Tyagi, Yash Mouje, Krish Mehta and Hiritikk Kumar</strong></p>
+            <p>GreenScore is created to encourage environmentally friendly behavior such as reducing the use of non-reusable materials, recycling, and increasing the level of use of eco-friendly materials. The website includes a vast range of features, such as hover flashcards, quizzes, real-time statistics, and many others which are tested to spread climate change awareness in an interactive and gamified way. We learned specialized concepts of Web Development for the first time, in various languages including CSS, JavaScript, and HTML. We used different visually appealing ideas, including Parallax (visuals move in response to the scroll's movement).</p>
+            <p><strong>November 2022</strong></p>
+        </div>
+    </div>
+    <div class="project-box">
+        <div class="project">
+            <h3><strong>Javelin Power Saver</strong></h3>
+            <a href="https://mecsimcalc.com/app/1569496/javelin_power_saver_cuts_your_electricity_bill_smartly">Demo</a>
+            <p><strong>Made by Chetan Tyagi</strong></p>
+            <p>The application, made in Python, aims to conserve the appliances’ energy, taking decisions to buy a new appliance and therefore reduce electricity expenses. With the help of this easy-to-use app, the user will be able to calculate the electricity consumption of appliances per month, total money you spend on them in a month, compare user’s electricity bill with the country’s average and compare the appliances with popular products in the same range.</p>
+            <p><strong>July 2022</strong></p>
+        </div>
+    </div>
+</section>
+
+<footer style="text-align: center;">
+    <p>&copy; 2023 Chetan Tyagi | Navigating the world through <span style="color: #f8ba00;">code</span> and <span style="color: #f8ba00;">maps</span>.</p>
+</footer>
+
+
+
+</body>
+</html>
