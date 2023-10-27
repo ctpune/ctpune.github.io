@@ -72,7 +72,7 @@
     display: flex;
     height: 50px;
     width: 150px;
-    background-color: #FFC30B;
+    background-color: #ffc20b;
     color: #000000;
     text-decoration: none;
     font-weight: bold;
@@ -115,7 +115,7 @@
             left: 10px; /* Stick to the left side of the viewport */
             width: 120px; /* Set the width of the menu */
             height: 440px; /* Make the menu cover the entire height of the viewport */
-            background-color: #FFC30B; /* Set the background color */
+            background-color: #dfdcd5; /* Set the background color */
             color: #000000; /* Set the text color */
             padding: 20px; /* Add some padding for spacing */
             border: 2px solid #000000; /* Black border */
@@ -218,8 +218,8 @@ section {
     align-items: center;
     justify-content: center;
     position: fixed;
-    top: 16%;
-    left: 60%;
+    top: 15.8%;
+    left: 55%;
     z-index: 2;
 }
 
@@ -264,6 +264,7 @@ section {
             // Change to swapped colors and reverse the font
             body.style.backgroundColor = "#3e424b";
             body.style.color = "#FFC30B";
+            menu.style.backgroundColor= "#6d6e71";
             button.style.backgroundColor = "#FFC30B";
             button.style.color = "#000000";
             fontReversed = true;
@@ -272,6 +273,7 @@ section {
             // Change back to initial colors and restore the font
             body.style.backgroundColor = "#faf6ea";
             body.style.color = "#000000";
+            menu.style.backgroundColor= "#dfdcd5";
             button.style.backgroundColor = "#FFC30B";
             button.style.color = "#000000";
             fontReversed = false;
@@ -331,8 +333,10 @@ section {
 
         // Create a paragraph for the text
         const textParagraph = document.createElement("p");
-        textParagraph.textContent = "Here's a photo of me near the North Saskatchewan River, close to the University Campus.";
-        textParagraph.style.textAlign = "center";
+textParagraph.textContent = "Here's a photo of me near the North Saskatchewan River, close to the University Campus.";
+textParagraph.style.textAlign = "center";
+textParagraph.style.color = "#000"; // Set the text color to black
+
 
         // Add an event listener to close the modal when clicking the image
         randomPhoto.addEventListener("click", function() {
@@ -398,12 +402,12 @@ section {
 <section id="about">
     <h2>About Me</h2>
     <p>
-        I am Chetan Tyagi, an international student currently studying at the University of Alberta, Edmonton. Currently, I'm enrolled in my second year of computer science.
+        I'm Chetan Tyagi, an international computer science student in my second year at the University of Alberta, Edmonton. My current focus is on pursuing CCNA (Cisco Certified Network Associate) certification.
     </p>
     <p>
-        I always love to spend my free time learning new skills in the field of Computer Science. For a few months now, this has been Cloud Computing in Microsoft Azure. I am an avid follower of tech news and spend a large amount of my time exploring the latest technology advancements in the software development world.
+        I stay up-to-date with the latest tech advancements and enjoy exploring the world of software development. In my free time, I'm an enthusiastic traveler, a numismatist(I love collecting rare and foreign coins and paper bills), and a chess player.
+
     </p>
-    <p>Apart from coding, my hobbies include traveling and working out. Along with this, I also like playing chess. I have been playing chess since I was in school and is the best hobby I think I am truly proud of.</p>
     <p class="mb-5">Feel free to reach out to me through the contact details below:</p>
     <p>Email: ctyagy06@gmail.com</p>
     <p>Phone: +1 (780) 729-7849</p>
@@ -563,8 +567,7 @@ section {
             <h3><strong>Cosmic - A Marketplace for Open Science</strong></h3>
             <a href="https://github.com/chetanty/cosmic">Source Code</a>
             <p><strong>Made by Chetan Tyagi, Harkeerat Singh and David Pham</strong></p>
-            <p>Worked in a team to create a portal which connects aspiring project developers with open science organizations. This was made as a part of NASA Space Apps Challenge 2023.</p>
-            <p>Implemented Django, HTML, and CSS with SQLite3 for a great user experience and more features.</p>
+            <p>Worked in a team to create a portal which connects aspiring project developers with open science organizations. This was made as a part of NASA Space Apps Challenge 2023. Implemented Django, HTML, and CSS with SQLite3 for a great user experience and more features.</p>
             <p><strong>October 2023</strong></p>
         </div>
     </div>
