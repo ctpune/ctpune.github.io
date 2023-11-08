@@ -26,188 +26,125 @@
     <title>Map Master</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     
-<style>
-  /* Common styles for both PC and mobile */
-  body {
-    background: url("b1.jpg");
-    font-family: "Rockwell", serif;
-  }
+    <style>
+        body {
+            background-color: #efdcc3;
+            font-family: "Rockwell", serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 90vh;
+        }
 
-  .text-center {
-    position: fixed;
-    top: 40%;
-    left: 11%;
-    font-size: 19px;
-    text-align: center;
-    font-family: "Rockwell", serif;
-  }
-  .text-center2 {
-    position: fixed;
-    top: 40%;
-    left: 50%;
-    text-align: center;
-    font-size: 19px;
-    font-family: "Rockwell", serif;
-  }
-  
-  .text-center3 {
-    position: fixed;
-    top: 60%;
-    left: 50%;
-    text-align: center;
-    font-size: 19px;
-    font-family: "Rockwell", serif;
-  }
+        .container {
+            display: flex;
+            align-items: center;
+        }
 
-  .text-center4 {
-    position: fixed;
-    top: 60%;
-    
-    left: 11%;
-    text-align: center;
-    font-size: 19px;
-    font-family: "Rockwell", serif;
-  }
-  .button {
-    position: fixed;
+        .line {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
 
-    display: inline-block;
-    padding: 12px;
-    font-size: 20px;
-    color: rgb(236, 236, 236);
-    background-color: rgb(142, 97, 0);
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    margin: 10px;
-    width: 400px;
-    height: 50px;
-    background: url('a2.jpg');
-    font-family: "Rockwell", serif;
-  }
-  
-  .ggg {
-    position: fixed;
+        .left-panel, .right-panel {
+            text-align: center;
+            flex: 1;
+            padding: 20px;
+        }
 
-    font-size: 100px;
-    text-align: center;
-    margin-top: 5px;
-    margin-bottom: 7px;
-    font-family: "Germania One", serif;
-    position: fixed;
-  top: 40px;
-  height: 180px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  }
-  .logo {
-  position: fixed;
-  top: -80px;
-  width: 650px;
-  height: 400px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-}
-.logolink {
-  width: 190px;
-  height: 180px;
-  cursor: pointer;
-}
-.globe-image {
-  width: 1100px;
-  height: 600px;
-  position: fixed;
-  top: 50%; /* Center vertically */
-  left: 50%; /* Center horizontally */
-  transform: translate(-50%, -50%); /* Center it precisely */
-  z-index: -5;
-}
-@media only screen and (min-width: 300px) and (max-width: 980px) {
-  .globe-image {
-  width: 3300px;
-  height: 1700px;
-  position: fixed;
-  top: 50%; /* Center vertically */
-  left: 50%; /* Center horizontally */
-  transform: translate(-50%, -50%); /* Center it precisely */
-  z-index: -5;
-}
+        .left-panel {
+            border-right: 2px solid #000; /* Add a border on the right for separation */
+        }
 
-  .text-center {
-          font-size: 60px; /* Increased font size */
-          text-align: center;
-        left: 6%;
-        top: 35%;
-  }
-  .text-center2 {
-    font-size: 60px; /* Increased font size */
-          text-align: center;
-        left: 50%;
-        top: 35%;
-  }
-  
-  .text-center3 {
-          font-size: 60px; /* Increased font size */
-          text-align: center;
-        left: 6%;
-        top: 52%;
-  }
-  .text-center4 {
-          font-size: 60px; /* Increased font size */
-          text-align: center;
-        left: 50%;
-        top: 52%;
-  }
-  
+        .heading, .heading2 {
+            font-size: 30px;
+            font-family: "Rockwell", serif;
+            font-weight: bold; /* Make the headings bold */
+        }
 
         .button {
-    position: fixed;
+            font-size: 20px;
+            font-family: 'Rockwell', cursive;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #FFC30B;
+            color: #000000;
+            text-decoration: none;
+            font-weight: bold; /* Make the buttons bold */
+            border: 2px solid #000000;
+            border-radius: 5px;
+            width: 100%;
+            height: 50px;
+            cursor: pointer;
+            position: relative;
+            margin: 10px 0; /* Add margin to separate buttons vertically */
+        }
 
-    display: inline-block;
-    padding: 12px;
-    font-size: 40px;
-    color: rgb(236, 236, 236);
-    background-color: rgb(142, 97, 0);
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    margin: 10px;
-    width: 400px;
-    height: 150px;
-    background: url('a2.jpg');
-    font-family: "Rockwell", serif;
-  }
+        .button:hover {
+            background-color: #000000;
+            color: #FFC30B;
+            border: 2px solid #FFC30B;
+        }
+        .button2 {
+            font-size: 20px;
+            font-family: 'Rockwell', cursive;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #FFC30B;
+            color: #000000;
+            text-decoration: none;
+            font-weight: bold; /* Make the buttons bold */
+            border: 2px solid #000000;
+            border-radius: 5px;
+            width: 100%;
+            height: 260px;
+            cursor: pointer;
+            position: relative;
+            margin: 10px 0; /* Add margin to separate buttons vertically */
+        }
 
+        .button2:hover {
+            background-color: #000000;
+            color: #FFC30B;
+            border: 2px solid #FFC30B;
+        }
+        .globe-image {
+  width: 1000px;
+  height: 500px;
+  position: fixed;
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Center it precisely */
+  z-index: -5;
 }
-  </style>
+    </style>
+</head>
 <body>
-
-
-  <a href="https://chetantyagi.me/" target="_blank" class="logo-link">
-    <img src="better_logo.png" alt="Go to https://chetantyagi.me/" class="logo" />
-  </a>
   <img src="globe.png" alt="Globe Image" class="globe-image" />
 
-    <div class="text-center">
-
-      <button id="guess-button" class="button"  onclick="window.location.href='sp.html'">Play Classic Singleplayer</button>
+  <h1>chetantyagi.me</h1><br>
+  <div class="container">
+    <div class="line">
+      <div class="left-panel">
+        <div class="heading" style="margin-bottom: 100px;">Map Master</div>
+        <button class="button" onclick="window.location.href='sp.html'">Play Classic Singleplayer</button>
+        <button class="button" onclick="window.location.href='sp_hard.html'">Play Hardmode Singleplayer</button>
+        <button class="button" onclick="window.location.href='streetview.html'">Street Mode (Flagship)</button>
+        <button class="button" onclick="window.location.href=''">Multiplayer (In Development)</button>
+      </div>
+      <div class="right-panel">
+        <div class="heading" style="margin-bottom: 100px; top:90px;">The Portfolio</div>
+        <button class="button2" onclick="window.location.href='portfolio.html'">Portfolio</button>
+      </div>
     </div>
-    <div class="text-center2">
-      <button id="guess-button" class="button"  onclick="window.location.href='sp_hard.html'">Play Hardmode Singleplayer</button>
-    </div>
-    <div class="text-center3">
-      <button id="guess-button" class="button"  onclick="window.location.href=''">Multiplayer (In Development)</button>
-    </div>
-    <div class="text-center4">
-      <button id="guess-button" class="button"  onclick="window.location.href='streetview.html'">Street Mode (New)</button>
-    </div>
-
-
+  </div>
 </body>
+
 </html>
