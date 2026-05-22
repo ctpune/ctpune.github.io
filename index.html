@@ -272,6 +272,10 @@
       align-self: flex-start;
     }
     .form-submit:hover { background: #1648c0; }
+    .form-submit:disabled { background: #93b0f0; cursor: not-allowed; }
+    .form-status { font-size: 0.88rem; margin-top: 2px; }
+    .form-status.success { color: #16a34a; }
+    .form-status.error { color: #dc2626; }
 
     /* FOOTER */
     footer {
@@ -423,7 +427,8 @@
           <label for="message">Message</label>
           <textarea id="message" name="message" placeholder="Tell us what you need..."></textarea>
         </div>
-        <button type="submit" class="form-submit">Send Message</button>
+        <button type="submit" class="form-submit" id="submitBtn">Send Message</button>
+        <p class="form-status" id="formStatus"></p>
       </form>
     </div>
   </div>
@@ -434,22 +439,37 @@
 </footer>
 
 <script>
-  document.getElementById('contactForm').addEventListener('submit', function(e) {
+  document.getElementById('contactForm').addEventListener('submit', async function(e) {
     e.preventDefault();
-    var name    = document.getElementById('name').value.trim();
-    var phone   = document.getElementById('phone').value.trim();
-    var service = document.getElementById('service').value;
-    var message = document.getElementById('message').value.trim();
+    var btn    = document.getElementById('submitBtn');
+    var status = document.getElementById('formStatus');
 
-    var subject = 'Service Enquiry' + (service ? ': ' + service : '');
-    var body = 'Name: ' + name + '\n'
-             + (phone ? 'Phone: ' + phone + '\n' : '')
-             + (service ? 'Service: ' + service + '\n' : '')
-             + '\n' + message;
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    status.textContent = '';
+    status.className = 'form-status';
 
-    window.location.href = 'mailto:modusintegratedservices@gmail.com'
-      + '?subject=' + encodeURIComponent(subject)
-      + '&body=' + encodeURIComponent(body);
+    try {
+      var res = await fetch('https://formspree.io/f/mjgzrwqb', {
+        method: 'POST',
+        body: new FormData(this),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        status.textContent = 'Message sent! We will get back to you soon.';
+        status.className = 'form-status success';
+        this.reset();
+      } else {
+        throw new Error();
+      }
+    } catch {
+      status.textContent = 'Something went wrong. Please email us directly.';
+      status.className = 'form-status error';
+    }
+
+    btn.disabled = false;
+    btn.textContent = 'Send Message';
   });
 </script>
 
