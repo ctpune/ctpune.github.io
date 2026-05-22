@@ -1,11 +1,308 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hello</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modus Integrated Services - Pune</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #f8f9fb;
+      color: #1a1a2e;
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    header {
+      background: #fff;
+      border-bottom: 1px solid #e4e8ef;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    nav {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1a56db;
+      letter-spacing: -0.3px;
+    }
+    .logo span { color: #1a1a2e; }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 28px;
+    }
+    nav a {
+      text-decoration: none;
+      font-size: 0.9rem;
+      color: #444;
+      font-weight: 500;
+    }
+    nav a:hover { color: #1a56db; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #eef3ff 0%, #f8f9fb 100%);
+      padding: 72px 24px 64px;
+      text-align: center;
+      border-bottom: 1px solid #e4e8ef;
+    }
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #1a1a2e;
+      letter-spacing: -0.5px;
+      margin-bottom: 14px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: #1a56db;
+    }
+    .hero p {
+      max-width: 520px;
+      margin: 0 auto 28px;
+      color: #555;
+      font-size: 1.05rem;
+    }
+    .btn {
+      display: inline-block;
+      background: #1a56db;
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+    .btn:hover { background: #1648c0; }
+
+    /* SECTIONS */
+    section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #1a56db;
+      margin-bottom: 8px;
+    }
+    h2 {
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 36px;
+      letter-spacing: -0.3px;
+    }
+
+    /* SERVICES */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #e4e8ef;
+      border-radius: 12px;
+      padding: 28px 22px;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .card:hover {
+      box-shadow: 0 4px 16px rgba(26,86,219,0.08);
+      border-color: #c5d5f8;
+    }
+    .card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+    }
+    .card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 6px;
+    }
+    .card p {
+      font-size: 0.875rem;
+      color: #666;
+    }
+
+    /* DIVIDER */
+    .divider {
+      border: none;
+      border-top: 1px solid #e4e8ef;
+    }
+
+    /* ABOUT */
+    .about-row {
+      display: flex;
+      gap: 48px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+    .about-row div { flex: 1; min-width: 220px; }
+    .about-row p { color: #555; font-size: 0.95rem; margin-bottom: 14px; }
+    .pillars {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .pillar {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 0.9rem;
+      color: #333;
+    }
+    .pillar-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #1a56db;
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+
+    /* CONTACT */
+    #contact { background: #fff; border-top: 1px solid #e4e8ef; border-bottom: 1px solid #e4e8ef; max-width: 100%; }
+    #contact section { max-width: 1000px; }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 24px;
+    }
+    .contact-item h4 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #888;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    .contact-item p, .contact-item a {
+      font-size: 0.95rem;
+      color: #1a1a2e;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .contact-item a:hover { color: #1a56db; }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 0.8rem;
+      color: #aaa;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 1.6rem; }
+      nav ul { display: none; }
+    }
+  </style>
 </head>
 <body>
-    <p>hello</p>
+
+<header>
+  <nav>
+    <div class="logo">Modus <span>Integrated Services</span></div>
+    <ul>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="hero">
+  <h1>Home Services<br>you can <em>rely on</em></h1>
+  <p>Professional cleaning, plumbing, and more for homes across Pune.</p>
+  <a href="#contact" class="btn">Get in Touch</a>
+</div>
+
+<section id="services">
+  <div class="section-label">What we do</div>
+  <h2>Our Services</h2>
+  <div class="services-grid">
+    <div class="card">
+      <div class="card-icon">🧹</div>
+      <h3>Home Cleaning</h3>
+      <p>Regular and deep cleaning for apartments, villas, and independent homes.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔧</div>
+      <h3>Plumbing</h3>
+      <p>Repairs, installations, and maintenance for all residential plumbing needs.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <h3>Electrical Work</h3>
+      <p>Safe and reliable electrical repairs, fitting, and routine inspections.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🪟</div>
+      <h3>Pest Control</h3>
+      <p>Effective treatment plans to keep your home pest-free.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🪑</div>
+      <h3>Carpentry &amp; Repair</h3>
+      <p>Furniture assembly, door and window repairs, and general carpentry.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<section id="about">
+  <div class="section-label">Who we are</div>
+  <h2>About Modus</h2>
+  <div class="about-row">
+    <div>
+      <p>Modus Integrated Services is a Pune-based home services company. We bring together skilled, verified professionals to handle the work so you don't have to worry about it.</p>
+      <p>We serve residential societies and independent homes across Pune with a focus on punctuality, quality, and straightforward service.</p>
+    </div>
+    <div>
+      <div class="pillars">
+        <div class="pillar"><div class="pillar-dot"></div><div><strong>Verified professionals</strong>: background-checked and trained service staff.</div></div>
+        <div class="pillar"><div class="pillar-dot"></div><div><strong>Transparent pricing</strong>: clear quotes before any work begins.</div></div>
+        <div class="pillar"><div class="pillar-dot"></div><div><strong>On-time service</strong>: we respect your schedule.</div></div>
+        <div class="pillar"><div class="pillar-dot"></div><div><strong>Post-service follow-up</strong>: we check in to make sure you're satisfied.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="contact">
+  <section>
+    <div class="section-label">Reach us</div>
+    <h2>Contact</h2>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <h4>Location</h4>
+        <p>Pune, Maharashtra, India</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  &copy; 2026 Modus Integrated Services, Pune. All rights reserved.
+</footer>
+
 </body>
 </html>

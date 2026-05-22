@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Remove-Item M1.png, a.png, README.md, a1.jpeg, a2.jpg, abchs.jpg, ac1.png, app.js, app_hard.js, app_mp.js, app_street.js, b1.jpg, better_logo.png, edm.png, favicon.ico, german_logo.png, globe.png, mm1.png, mp.html, portfolio.html, sask.jpg, sp.html, sp_hard.html, streetview.html, streetview_sample.html, style.css -Force -ErrorAction SilentlyContinue)",
+      "Bash(Get-ChildItem -Name)"
+    ]
+  }
+}
