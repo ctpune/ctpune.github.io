@@ -23,195 +23,274 @@
       z-index: 10;
     }
     nav {
-      max-width: 1000px;
+      max-width: 960px;
       margin: 0 auto;
-      padding: 0 24px;
-      height: 60px;
+      padding: 0 20px;
+      height: 58px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
     .logo {
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 700;
       color: #1a56db;
-      letter-spacing: -0.3px;
     }
     .logo span { color: #1a1a2e; }
     nav ul {
       list-style: none;
       display: flex;
-      gap: 28px;
+      gap: 24px;
     }
     nav a {
       text-decoration: none;
-      font-size: 0.9rem;
-      color: #444;
+      font-size: 0.875rem;
+      color: #555;
       font-weight: 500;
     }
     nav a:hover { color: #1a56db; }
 
     /* HERO */
     .hero {
-      background: linear-gradient(135deg, #eef3ff 0%, #f8f9fb 100%);
-      padding: 72px 24px 64px;
+      background: linear-gradient(160deg, #eef3ff 0%, #f8f9fb 60%);
+      padding: 80px 20px 72px;
       text-align: center;
       border-bottom: 1px solid #e4e8ef;
     }
     .hero h1 {
-      font-size: 2.2rem;
+      font-size: clamp(2.4rem, 7vw, 3.8rem);
       font-weight: 800;
-      color: #1a1a2e;
-      letter-spacing: -0.5px;
-      margin-bottom: 14px;
+      color: #0f172a;
+      letter-spacing: -1px;
+      line-height: 1.15;
+      margin-bottom: 16px;
     }
     .hero h1 em {
       font-style: normal;
       color: #1a56db;
     }
     .hero p {
-      max-width: 520px;
-      margin: 0 auto 28px;
-      color: #555;
+      max-width: 460px;
+      margin: 0 auto 32px;
+      color: #64748b;
       font-size: 1.05rem;
     }
     .btn {
       display: inline-block;
       background: #1a56db;
       color: #fff;
-      padding: 12px 28px;
+      padding: 13px 30px;
       border-radius: 8px;
       text-decoration: none;
       font-weight: 600;
       font-size: 0.95rem;
-      transition: background 0.2s;
+      transition: background 0.18s;
     }
     .btn:hover { background: #1648c0; }
 
     /* SECTIONS */
-    section {
-      max-width: 1000px;
+    .section-wrap {
+      max-width: 960px;
       margin: 0 auto;
-      padding: 60px 24px;
+      padding: 64px 20px;
     }
     .section-label {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 1.5px;
+      letter-spacing: 1.8px;
       color: #1a56db;
       margin-bottom: 8px;
     }
     h2 {
-      font-size: 1.65rem;
+      font-size: 1.75rem;
       font-weight: 700;
-      color: #1a1a2e;
-      margin-bottom: 36px;
-      letter-spacing: -0.3px;
+      color: #0f172a;
+      margin-bottom: 40px;
+      letter-spacing: -0.4px;
     }
 
     /* SERVICES */
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 16px;
     }
     .card {
       background: #fff;
       border: 1px solid #e4e8ef;
-      border-radius: 12px;
-      padding: 28px 22px;
-      transition: box-shadow 0.2s, border-color 0.2s;
+      border-radius: 14px;
+      padding: 26px 20px;
+      transition: box-shadow 0.18s, border-color 0.18s;
     }
     .card:hover {
-      box-shadow: 0 4px 16px rgba(26,86,219,0.08);
-      border-color: #c5d5f8;
+      box-shadow: 0 4px 20px rgba(26,86,219,0.09);
+      border-color: #bfcef7;
     }
     .card-icon {
-      font-size: 1.8rem;
+      font-size: 1.7rem;
       margin-bottom: 12px;
+      display: block;
     }
     .card h3 {
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 700;
-      color: #1a1a2e;
-      margin-bottom: 6px;
+      color: #0f172a;
+      margin-bottom: 5px;
     }
     .card p {
-      font-size: 0.875rem;
-      color: #666;
+      font-size: 0.83rem;
+      color: #64748b;
+      line-height: 1.5;
     }
 
     /* DIVIDER */
     .divider {
       border: none;
       border-top: 1px solid #e4e8ef;
+      max-width: 960px;
+      margin: 0 auto;
     }
 
     /* ABOUT */
     .about-row {
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 48px;
-      align-items: flex-start;
-      flex-wrap: wrap;
+      align-items: start;
     }
-    .about-row div { flex: 1; min-width: 220px; }
-    .about-row p { color: #555; font-size: 0.95rem; margin-bottom: 14px; }
+    .about-row p {
+      color: #475569;
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+    }
     .pillars {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 14px;
     }
     .pillar {
       display: flex;
-      gap: 10px;
+      gap: 12px;
       align-items: flex-start;
-      font-size: 0.9rem;
-      color: #333;
+      font-size: 0.88rem;
+      color: #334155;
     }
     .pillar-dot {
-      width: 8px; height: 8px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
       background: #1a56db;
-      margin-top: 7px;
+      margin-top: 6px;
       flex-shrink: 0;
     }
 
     /* CONTACT */
-    #contact { background: #fff; border-top: 1px solid #e4e8ef; border-bottom: 1px solid #e4e8ef; max-width: 100%; }
-    #contact section { max-width: 1000px; }
-    .contact-grid {
+    .contact-bg {
+      background: #fff;
+      border-top: 1px solid #e4e8ef;
+      border-bottom: 1px solid #e4e8ef;
+    }
+    .contact-layout {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 24px;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
     }
-    .contact-item h4 {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: #888;
-      margin-bottom: 6px;
+    .contact-info h3 {
+      font-size: 1rem;
       font-weight: 600;
+      color: #0f172a;
+      margin-bottom: 6px;
     }
-    .contact-item p, .contact-item a {
-      font-size: 0.95rem;
-      color: #1a1a2e;
+    .contact-info p {
+      font-size: 0.9rem;
+      color: #475569;
+      margin-bottom: 20px;
+    }
+    .contact-info a {
+      color: #1a56db;
       text-decoration: none;
       font-weight: 500;
     }
-    .contact-item a:hover { color: #1a56db; }
+    .contact-info a:hover { text-decoration: underline; }
+
+    /* FORM */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .field label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #475569;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+    .field input,
+    .field textarea,
+    .field select {
+      border: 1px solid #d1d9e6;
+      border-radius: 8px;
+      padding: 10px 13px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      color: #0f172a;
+      background: #f8f9fb;
+      outline: none;
+      transition: border-color 0.15s, background 0.15s;
+      width: 100%;
+    }
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      border-color: #1a56db;
+      background: #fff;
+    }
+    .field textarea { resize: vertical; min-height: 100px; }
+    .form-submit {
+      border: none;
+      background: #1a56db;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 0.93rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.18s;
+      align-self: flex-start;
+    }
+    .form-submit:hover { background: #1648c0; }
 
     /* FOOTER */
     footer {
       text-align: center;
-      padding: 24px;
-      font-size: 0.8rem;
-      color: #aaa;
+      padding: 24px 20px;
+      font-size: 0.78rem;
+      color: #94a3b8;
     }
 
-    @media (max-width: 600px) {
-      .hero h1 { font-size: 1.6rem; }
+    /* MOBILE */
+    @media (max-width: 640px) {
       nav ul { display: none; }
+      .hero { padding: 60px 20px 52px; }
+      .hero p { font-size: 0.97rem; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .about-row { grid-template-columns: 1fr; gap: 28px; }
+      .contact-layout { grid-template-columns: 1fr; gap: 32px; }
+      .form-row { grid-template-columns: 1fr; }
+      h2 { font-size: 1.45rem; }
     }
   </style>
 </head>
@@ -229,80 +308,150 @@
 </header>
 
 <div class="hero">
-  <h1>Home Services<br>you can <em>rely on</em></h1>
+  <h1>Home services<br>you can <em>rely on</em></h1>
   <p>Professional cleaning, plumbing, and more for homes across Pune.</p>
   <a href="#contact" class="btn">Get in Touch</a>
 </div>
 
-<section id="services">
-  <div class="section-label">What we do</div>
-  <h2>Our Services</h2>
-  <div class="services-grid">
-    <div class="card">
-      <div class="card-icon">🧹</div>
-      <h3>Home Cleaning</h3>
-      <p>Regular and deep cleaning for apartments, villas, and independent homes.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🔧</div>
-      <h3>Plumbing</h3>
-      <p>Repairs, installations, and maintenance for all residential plumbing needs.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">⚡</div>
-      <h3>Electrical Work</h3>
-      <p>Safe and reliable electrical repairs, fitting, and routine inspections.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🪟</div>
-      <h3>Pest Control</h3>
-      <p>Effective treatment plans to keep your home pest-free.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🪑</div>
-      <h3>Carpentry &amp; Repair</h3>
-      <p>Furniture assembly, door and window repairs, and general carpentry.</p>
+<div id="services">
+  <div class="section-wrap">
+    <div class="section-label">What we do</div>
+    <h2>Our Services</h2>
+    <div class="services-grid">
+      <div class="card">
+        <span class="card-icon">🧹</span>
+        <h3>Home Cleaning</h3>
+        <p>Regular and deep cleaning for apartments, villas, and independent homes.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔧</span>
+        <h3>Plumbing</h3>
+        <p>Repairs, installations, and maintenance for all residential plumbing needs.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">⚡</span>
+        <h3>Electrical Work</h3>
+        <p>Safe and reliable electrical repairs, fitting, and routine inspections.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🐜</span>
+        <h3>Pest Control</h3>
+        <p>Effective treatment plans to keep your home pest-free.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🪚</span>
+        <h3>Carpentry &amp; Repair</h3>
+        <p>Furniture assembly, door and window repairs, and general carpentry.</p>
+      </div>
     </div>
   </div>
-</section>
+</div>
 
 <hr class="divider" />
 
-<section id="about">
-  <div class="section-label">Who we are</div>
-  <h2>About Modus</h2>
-  <div class="about-row">
-    <div>
-      <p>Modus Integrated Services is a Pune-based home services company. We bring together skilled, verified professionals to handle the work so you don't have to worry about it.</p>
-      <p>We serve residential societies and independent homes across Pune with a focus on punctuality, quality, and straightforward service.</p>
-    </div>
-    <div>
-      <div class="pillars">
-        <div class="pillar"><div class="pillar-dot"></div><div><strong>Verified professionals</strong>: background-checked and trained service staff.</div></div>
-        <div class="pillar"><div class="pillar-dot"></div><div><strong>Transparent pricing</strong>: clear quotes before any work begins.</div></div>
-        <div class="pillar"><div class="pillar-dot"></div><div><strong>On-time service</strong>: we respect your schedule.</div></div>
-        <div class="pillar"><div class="pillar-dot"></div><div><strong>Post-service follow-up</strong>: we check in to make sure you're satisfied.</div></div>
+<div id="about">
+  <div class="section-wrap">
+    <div class="section-label">Who we are</div>
+    <h2>About Modus</h2>
+    <div class="about-row">
+      <div>
+        <p>Modus Integrated Services is a Pune-based home services company. We bring together skilled, verified professionals so you don't have to worry about the work.</p>
+        <p>We serve residential societies and independent homes across Pune with a focus on punctuality, quality, and straightforward service.</p>
+      </div>
+      <div>
+        <div class="pillars">
+          <div class="pillar">
+            <div class="pillar-dot"></div>
+            <div><strong>Verified professionals:</strong> background-checked and trained service staff.</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-dot"></div>
+            <div><strong>Transparent pricing:</strong> clear quotes before any work begins.</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-dot"></div>
+            <div><strong>On-time service:</strong> we respect your schedule.</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-dot"></div>
+            <div><strong>Post-service follow-up:</strong> we check in to make sure you're satisfied.</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<div id="contact">
-  <section>
+<div class="contact-bg" id="contact">
+  <div class="section-wrap">
     <div class="section-label">Reach us</div>
     <h2>Contact</h2>
-    <div class="contact-grid">
-      <div class="contact-item">
-        <h4>Location</h4>
+    <div class="contact-layout">
+      <div class="contact-info">
+        <h3>Modus Integrated Services</h3>
         <p>Pune, Maharashtra, India</p>
+        <p>
+          Email us at<br>
+          <a href="mailto:modusintegratedservices@gmail.com">modusintegratedservices@gmail.com</a>
+        </p>
+        <p>We typically respond within one business day.</p>
       </div>
+      <form class="contact-form" id="contactForm">
+        <div class="form-row">
+          <div class="field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required />
+          </div>
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" placeholder="+91 00000 00000" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="service">Service needed</label>
+          <select id="service" name="service">
+            <option value="">Select a service</option>
+            <option>Home Cleaning</option>
+            <option>Plumbing</option>
+            <option>Electrical Work</option>
+            <option>Pest Control</option>
+            <option>Carpentry &amp; Repair</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell us what you need..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Message</button>
+      </form>
     </div>
-  </section>
+  </div>
 </div>
 
 <footer>
   &copy; 2026 Modus Integrated Services, Pune. All rights reserved.
 </footer>
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var name    = document.getElementById('name').value.trim();
+    var phone   = document.getElementById('phone').value.trim();
+    var service = document.getElementById('service').value;
+    var message = document.getElementById('message').value.trim();
+
+    var subject = 'Service Enquiry' + (service ? ': ' + service : '');
+    var body = 'Name: ' + name + '\n'
+             + (phone ? 'Phone: ' + phone + '\n' : '')
+             + (service ? 'Service: ' + service + '\n' : '')
+             + '\n' + message;
+
+    window.location.href = 'mailto:modusintegratedservices@gmail.com'
+      + '?subject=' + encodeURIComponent(subject)
+      + '&body=' + encodeURIComponent(body);
+  });
+</script>
 
 </body>
 </html>
