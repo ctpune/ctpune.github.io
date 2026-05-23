@@ -113,35 +113,64 @@
     /* SERVICES */
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
     }
     .card {
       background: #fff;
       border: 1px solid #e4e8ef;
       border-radius: 14px;
-      padding: 26px 20px;
+      padding: 28px 24px;
       transition: box-shadow 0.18s, border-color 0.18s;
+      position: relative;
     }
     .card:hover {
       box-shadow: 0 4px 20px rgba(26,86,219,0.09);
       border-color: #bfcef7;
     }
+    .card-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: #eef3ff;
+      color: #1a56db;
+      border-radius: 4px;
+      padding: 3px 8px;
+      margin-bottom: 14px;
+    }
     .card-icon {
       font-size: 1.7rem;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       display: block;
     }
     .card h3 {
-      font-size: 0.95rem;
+      font-size: 1.05rem;
       font-weight: 700;
       color: #0f172a;
-      margin-bottom: 5px;
+      margin-bottom: 14px;
     }
-    .card p {
-      font-size: 0.83rem;
-      color: #64748b;
-      line-height: 1.5;
+    .card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .card ul li {
+      font-size: 0.88rem;
+      color: #475569;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card ul li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #1a56db;
+      flex-shrink: 0;
     }
 
     /* DIVIDER */
@@ -290,7 +319,7 @@
       nav ul { display: none; }
       .hero { padding: 60px 20px 52px; }
       .hero p { font-size: 0.97rem; }
-      .services-grid { grid-template-columns: 1fr 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
       .about-row { grid-template-columns: 1fr; gap: 28px; }
       .contact-layout { grid-template-columns: 1fr; gap: 32px; }
       .form-row { grid-template-columns: 1fr; }
@@ -312,8 +341,8 @@
 </header>
 
 <div class="hero">
-  <h1>Society services<br>you can <em>rely on</em></h1>
-  <p>Professional cleaning, plumbing, and more for residential societies across Pune.</p>
+  <h1>Facility services<br>you can <em>rely on</em></h1>
+  <p>Housekeeping, corporate support, and industrial staffing solutions across Pune.</p>
   <a href="#contact" class="btn">Get in Touch</a>
 </div>
 
@@ -323,19 +352,31 @@
     <h2>Our Services</h2>
     <div class="services-grid">
       <div class="card">
+        <span class="card-badge">Recommended</span>
         <span class="card-icon">🧹</span>
-        <h3>Society Cleaning</h3>
-        <p>Common area, staircase, lobby, and compound cleaning for residential societies.</p>
+        <h3>Housekeeping</h3>
+        <ul>
+          <li>Technical Maintenance</li>
+          <li>Society Facility Operations</li>
+        </ul>
       </div>
       <div class="card">
-        <span class="card-icon">🔧</span>
-        <h3>Plumbing</h3>
-        <p>Repairs, installations, and maintenance for society plumbing needs.</p>
+        <span class="card-icon">🏢</span>
+        <h3>Corporate</h3>
+        <ul>
+          <li>Office Admin Support</li>
+          <li>Pantry Staff</li>
+          <li>Office Maintenance</li>
+        </ul>
       </div>
       <div class="card">
-        <span class="card-icon">⚡</span>
-        <h3>Electrical Work</h3>
-        <p>Electrical repairs, fitting, and routine inspections for common areas.</p>
+        <span class="card-icon">🏭</span>
+        <h3>Industrial</h3>
+        <ul>
+          <li>Warehouse Housekeeping</li>
+          <li>Utility Management</li>
+          <li>Site Support Staff</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -349,8 +390,8 @@
     <h2>About Modus</h2>
     <div class="about-row">
       <div>
-        <p>Modus Integrated Services is a Pune-based society services company. We bring together skilled, verified professionals so your society committee doesn't have to worry about the work.</p>
-        <p>We serve residential societies across Pune with a focus on punctuality, quality, and straightforward service.</p>
+        <p>Modus Integrated Services is a Pune-based facility services company. We bring together skilled, verified professionals across housekeeping, corporate support, and industrial operations.</p>
+        <p>We serve residential societies, offices, and industrial sites across Pune with a focus on punctuality, quality, and straightforward service.</p>
       </div>
       <div>
         <div class="pillars">
@@ -405,10 +446,20 @@
           <label for="service">Service needed</label>
           <select id="service" name="service">
             <option value="">Select a service</option>
-            <option>Society Cleaning</option>
-            <option>Plumbing</option>
-            <option>Electrical Work</option>
-
+            <optgroup label="Housekeeping">
+              <option>Technical Maintenance</option>
+              <option>Society Facility Operations</option>
+            </optgroup>
+            <optgroup label="Corporate">
+              <option>Office Admin Support</option>
+              <option>Pantry Staff</option>
+              <option>Office Maintenance</option>
+            </optgroup>
+            <optgroup label="Industrial">
+              <option>Warehouse Housekeeping</option>
+              <option>Utility Management</option>
+              <option>Site Support Staff</option>
+            </optgroup>
             <option>Other</option>
           </select>
         </div>
